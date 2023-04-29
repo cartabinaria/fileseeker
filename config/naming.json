@@ -1,0 +1,10 @@
+{
+  "appunti": "^(.gitkeep|([a-z0-9]+(-[a-z0-9]+)*.[a-zA-Z]+))$",
+  "dispense": "^(.gitkeep|(d+(-[a-z0-9]+)+.[a-zA-Z]+))$",
+  "esercizi": "^(.gitkeep|([a-z0-9]+(-[a-z0-9]+)*.[a-zA-Z]+))$",
+  "lavagne": "^(.gitkeep|(d{4}-d{2}-d{2}(-[a-z0-9]+)+.[a-zA-Z]+))$",
+  "libri": "^(.gitkeep|([a-z0-9]+(-[a-z0-9]+)*.[a-zA-Z]+))$",
+  "lucidi": "^(.gitkeep|(d+(-[a-z0-9]+)+.[a-zA-Z]+))$",
+  "prove": "^(.gitkeep)|((scritto|totale|parzialed|orale(d?)|progetto(d?))-d{4}(-d{2}-d{2})?(-[a-z0-9]+)?-(testo|soluzione)(-[a-z0-9]+)?.[a-zA-Z0-9]+)$",
+  "varie": "^(.gitkeep|([a-z0-9]+(-[a-z0-9]+)*.[a-zA-Z]+))$"
+}
