@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: json-syntax-check
+        uses: limitusus/json-syntax-check@v2.0.0
