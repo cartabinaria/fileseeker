@@ -19,13 +19,12 @@ concurrency:
 
 jobs:
   build:
-    name: Build resources
     runs-on: ubuntu-latest
+    name: Build pdfs out of tex,md and various doc files
     container:
       image: ghcr.io/csunibo/build-image:latest
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v1
         with:
           fetch-depth: 1
 
@@ -47,10 +46,12 @@ jobs:
           -i "${{inputs.regex_include}}"
           site
 
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Generate site artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v3
         with:
-          path: site
+          name: build
+          path: ./site
 
   deploy:
     name: Deploy to Github Pages
@@ -63,11 +64,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      - name: Download static site artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: site
       - name: Setup Pages
         uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          enablement: true
-
+          path: site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
