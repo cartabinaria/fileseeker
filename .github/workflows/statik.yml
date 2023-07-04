@@ -34,9 +34,6 @@ jobs:
       - name: Recursively compile (doc|ppt)x? files
         run: rec "\.(doc|ppt)x?$" "libreoffice --headless --convert-to pdf --outdir ."
 
-      - name: Recursively compile md files
-        run: rec "\.md$" /usr/bin/md2pdf
-
       - name: Recursively compile xopp files
         run: rec "\.xopp$" /usr/bin/xopp2pdf
 
