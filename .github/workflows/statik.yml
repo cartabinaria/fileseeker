@@ -1,11 +1,10 @@
 name: Build and Deploy
 on:
-  push:
-    branches: main
-  pull_request:
-    branches: main
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      regex_include:
+        required: true
+        type: string
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -17,9 +16,6 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
-
-env:
-  REGEX_INCLUDE: "\\.(pdf|link|txt|c|sh|py|gz|apkg)$"
 
 jobs:
   build:
@@ -45,7 +41,13 @@ jobs:
         run: rec "\.xopp$" /usr/bin/xopp2pdf
 
       - name: Generate static directory listing
-        run: statik -page /usr/share/page.gohtml -l -b "https://${{ github.event.repository.owner.name }}.github.io/${{ github.event.repository.name }}/" -i "$REGEX_INCLUDE" site
+        run: >
+          statik
+          -page /usr/share/page.gohtml
+          -l
+          -b "https://${{ github.event.repository.owner.name }}.github.io/${{ github.event.repository.name }}/"
+          -i "${{inputs.regex_include}}"
+          site
 
       - name: Generate site artifact
         if: github.ref == 'refs/heads/main'
@@ -56,12 +58,14 @@ jobs:
 
   deploy:
     name: Deploy to Github Pages
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Download static site artifact
         uses: actions/download-artifact@v3
