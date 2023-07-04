@@ -19,10 +19,12 @@ concurrency:
 
 jobs:
   build:
+    name: Build resources
+
     runs-on: ubuntu-latest
-    name: Build pdfs out of tex,md and various doc files
     container:
       image: ghcr.io/csunibo/build-image:latest
+
     steps:
       - uses: actions/checkout@v1
         with:
