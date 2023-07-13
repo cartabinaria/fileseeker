@@ -32,6 +32,9 @@ jobs:
 
       - name: Recursively compile tex files
         run: rec "\.tex$" "tectonic"
+        
+      - name: Recursively compile md files
+        run: rec "\.md$" /usr/bin/md2pdf
 
       - name: Recursively compile (doc|ppt)x? files
         run: rec "\.(doc|ppt)x?$" "libreoffice --headless --convert-to pdf --outdir ."
