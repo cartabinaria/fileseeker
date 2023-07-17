@@ -1,0 +1,39 @@
+name: Check filenames
+on:
+  workflow_call:
+
+jobs:
+  check:
+    name: Check filenames
+
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/csunibo/filenameslinter:latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - uses: actions/checkout@v1
+        with:
+          repository: csunibo/config
+          path: .config
+
+      - name: Check the `appunti` folder
+        run: filenameslinter .config/appunti.synta appunti
+
+      # - name: Check the `dispense` folder
+      #   run: filenameslinter .config/dispense.synta dispense
+      #
+      # - name: Check the `esercizi` folder
+      #   run: filenameslinter .config/esercizi.synta esercizi
+      #
+      # - name: Check the `libri` folder
+      #   run: filenameslinter .config/libri.synta libri
+      #
+      # - name: Check the `prove` folder
+      #   run: filenameslinter .config/prove.synta prove
+      #
+      # - name: Check the `varie` folder
+      #   run: filenameslinter .config/varie.synta varie

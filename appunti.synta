@@ -1,0 +1,8 @@
+; Un nome descrittivo in stile kebab case.
+; Ad esempio: note-concorrenza-luca
+name = [a-z0-9]+(-[a-z0-9]+)*
+
+; L'estensione del file
+ext = pdf|txt|md|tex|doc(x)
+
+> name.ext
