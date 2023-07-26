@@ -21,19 +21,22 @@ jobs:
           path: .config
 
       - name: Check the `appunti` folder
-        run: filenameslinter .config/appunti.synta appunti
+        run: filenameslinter appunti
 
-      # - name: Check the `dispense` folder
-      #   run: filenameslinter .config/dispense.synta dispense
-      #
-      # - name: Check the `esercizi` folder
-      #   run: filenameslinter .config/esercizi.synta esercizi
-      #
-      # - name: Check the `libri` folder
-      #   run: filenameslinter .config/libri.synta libri
-      #
-      # - name: Check the `prove` folder
-      #   run: filenameslinter .config/prove.synta prove
-      #
-      # - name: Check the `varie` folder
-      #   run: filenameslinter .config/varie.synta varie
+      - name: Check the `dispense` folder
+        run: filenameslinter .config/enumerazione.synta dispense
+       
+      - name: Check the `esercizi` folder
+        run: filenameslinter esercizi
+
+      - name: Check the `lucidi` folder
+        run: filenameslinter .config/enumerazione.synta lucidi
+
+      - name: Check the `libri` folder
+        run: filenameslinter libri
+
+      - name: Check the `prove` folder
+        run: filenameslinter .config/prove.synta prove
+
+      - name: Check the `varie` folder
+        run: filenameslinter varie

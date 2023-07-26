@@ -1,0 +1,12 @@
+; L'estensione del file.
+estensione = (\w|\d)+
+
+; L'indice della risosa secondo l'enumerazione prevista dal programma
+; dell'insegnamento. Ad esempio: 01, 09, 12.
+indice = \d+
+
+; Un nome descrittivo del documento in kebab-case. Ad esempio: introduzione,
+; algoritimi-di-ordinamento.
+nome = [a-z0-9]+(-[a-z0-9]+)*
+
+> indice-nome.estensione
