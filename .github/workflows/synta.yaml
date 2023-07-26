@@ -1,0 +1,26 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Check synta files
+
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/csunibo/synta:latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Check the enumerazione.synta file
+        run: synta check enumerazione.synta
+
+      - name: Check the prove.synta file
+        run: synta check prove.synta
