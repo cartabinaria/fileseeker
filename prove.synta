@@ -1,22 +1,22 @@
-; L'estensione del file.
-estensione = (\w|\d)+
-
-; La tipologia del documento. Ad esempio: scritto, orale1, progetto2, totale.
-tipologia = scritto|totale|parziale\d|orale\d?|progetto\d?
-
 ; L'anno in cui è stata svolta/pubblicata la prova.
 anno = \d{4}
 
-; Il mese in cui è stata svolta/pubblicata la prova.
-mese = \d{2}
+; L'estensione del file.
+estensione = (\w|\d)+
+
+; Informazioni extra sul file. Ad esempio: prof, nome studente, incompleto.
+extra = [a-z0-9]+
 
 ; Il giorno in cui è stata svolta/pubblicata la prova.
 giorno = \d{2}
 
+; Il mese in cui è stata svolta/pubblicata la prova.
+mese = \d{2}
+
 ; Il tipo del documento caricato. Può essere testo o soluzione.
 tipo = testo|soluzione
 
-; Informazioni extra sul file. Ad esempio: prof, nome studente, incompleto.
-extra = [a-z0-9]+
+; La tipologia del documento. Ad esempio: scritto, orale1, progetto2, totale.
+tipologia = scritto|totale|parziale\d|orale\d?|progetto\d?
 
 > tipologia-anno(-mese)?(-giorno)?(-extra)?-tipo(-extra)?.estensione
