@@ -17,6 +17,6 @@ mese = \d{2}
 tipo = testo|soluzione
 
 ; La tipologia del documento. Ad esempio: scritto, orale1, progetto2, totale.
-tipologia = scritto|totale|parziale\d|orale\d?|progetto\d?
+tipologia = scritto|totale|parziale\d|esercitazione\d?|orale\d?|progetto\d?
 
 > tipologia-anno(-mese)?(-giorno)?(-extra)?-tipo(-extra)?.estensione
