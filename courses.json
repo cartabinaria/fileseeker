@@ -209,22 +209,22 @@
           {
             "name": "Usability e user experience design",
             "url": "usability-e-user-experience-design",
-            "telegram": ""
+            "telegram": "uux_unibo"
           },
           {
             "name": "Complementi di linguaggi di programmazione",
             "url": "complementi-di-linguaggi-di-programmazione",
-            "telegram": ""
+            "telegram": "CLP_unibo"
           },
           {
             "name": "Complementi di basi di dati",
             "url": "complementi-di-basi-di-dati",
-            "telegram": ""
+            "telegram": "cdb_unibo"
           },
           {
             "name": "Intelligenza artificiale",
             "url": "intelligenza-artificiale",
-            "telegram": ""
+            "telegram": "ai_unibo"
           }
         ]
       }
