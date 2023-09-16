@@ -14,23 +14,28 @@
           },
           {
             "name": "Logica per l'informatica",
-            "url": "logica-per-informatica"
+            "url": "logica-per-informatica",
+            "telegram": "joinchat/HEBiPjOx_SpmYzY0"
           },
           {
             "name": "Programmazione",
-            "url": "programmazione"
+            "url": "programmazione",
+            "telegram": "joinchat/z1kz0BRjFr8zYjI0"
           },
           {
             "name": "Algebra e geometria",
-            "url": "algebra-e-geometria"
+            "url": "algebra-e-geometria",
+            "telegram": "joinchat/m5fn6ZffZvk0NGZk"
           },
           {
             "name": "Algoritmi e strutture dati",
-            "url": "algoritmi-e-strutture-di-dati"
+            "url": "algoritmi-e-strutture-di-dati",
+            "telegram": "joinchat/wSafC8l9ul1iNTE8"
           },
           {
             "name": "Analisi matematica",
-            "url": "analisi-matematica"
+            "url": "analisi-matematica",
+            "telegram": "joinchat/60_5FO9onfo4YmJk"
           }
         ]
       },
@@ -39,31 +44,38 @@
         "teachings": [
           {
             "name": "Calcolo numerico",
-            "url": "calcolo-numerico"
+            "url": "calcolo-numerico",
+            "telegram": "joinchat/h1lypfBFdEZkYzFk"
           },
           {
             "name": "Ottimizzazione combinatoria",
-            "url": "ottimizzazione-combinatoria"
+            "url": "ottimizzazione-combinatoria",
+            "telegram": "joinchat/klw79l5tkPM1NWQ0"
           },
           {
             "name": "Calcolo delle probabilità e statistica",
-            "url": "calcolo-delle-probabilita-e-statistica"
+            "url": "calcolo-delle-probabilita-e-statistica",
+            "telegram": "+j7GRbdJlwPExYzc0"
           },
           {
             "name": "Tecnologie web",
-            "url": "tecnologie-web"
+            "url": "tecnologie-web",
+            "telegram": "+nwEQesjR6FRmYzk0"
           },
           {
             "name": "Linguaggi di programmazione",
-            "url": "linguaggi-di-programmazione"
+            "url": "linguaggi-di-programmazione",
+            "telegram": "joinchat/4v-08oT6QWk0ZmM8"
           },
           {
             "name": "Reti di calcolatori",
-            "url": "reti-di-calcolatori"
+            "url": "reti-di-calcolatori",
+            "telegram": "joinchat/Sw2Ykp0-0mM1Zjdk"
           },
           {
             "name": "Sistemi operativi",
-            "url": "sistemi-operativi"
+            "url": "sistemi-operativi",
+            "telegram": "joinchat/2hUcGLfY7Gc2MTA8"
           }
         ]
       },
@@ -72,23 +84,28 @@
         "teachings": [
           {
             "name": "Basi di dati",
-            "url": "basi-di-dati"
+            "url": "basi-di-dati",
+            "telegram": "datidibasi"
           },
           {
             "name": "Ingegneria del software",
-            "url": "ingegneria-del-software"
+            "url": "ingegneria-del-software",
+            "telegram": "ingegneriaSWunibo"
           },
           {
             "name": "Introduzione all'apprendimento automatico",
-            "url": "introduzione-apprendimento-automatico"
+            "url": "introduzione-apprendimento-automatico",
+            "telegram": "appr_auto"
           },
           {
             "name": "Fondamenti di cybersecurity",
-            "url": "fondamenti-di-cybersecurity"
+            "url": "fondamenti-di-cybersecurity",
+            "telegram": "+_NRNOm34gOcxZTQ0"
           },
           {
             "name": "Informatica teorica",
-            "url": "informatica-teorica"
+            "url": "informatica-teorica",
+            "telegram": "infoteorica"
           }
         ]
       }
@@ -104,27 +121,33 @@
         "teachings": [
           {
             "name": "Fondamenti di informatica 1",
-            "url": "ing-fondamenti-di-informatica-1-t"
+            "url": "ing-fondamenti-di-informatica-1-t",
+            "telegram": ""
           },
           {
             "name": "Analisi 1",
-            "url": "ing-analisi-matematica-1-t"
+            "url": "ing-analisi-matematica-1-t",
+            "telegram": ""
           },
           {
             "name": "Algebra e geometria",
-            "url": "ing-algebra-e-geometria-t"
+            "url": "ing-algebra-e-geometria-t",
+            "telegram": ""
           },
           {
             "name": "Fondamenti di informatica 2",
-            "url": "ing-fondamenti-di-informatica-2-t"
+            "url": "ing-fondamenti-di-informatica-2-t",
+            "telegram": ""
           },
           {
             "name": "Analisi 2",
-            "url": "ing-analisi-matematica-2-t"
+            "url": "ing-analisi-matematica-2-t",
+            "telegram": ""
           },
           {
             "name": "Reti logiche",
-            "url": "ing-reti-logiche-t"
+            "url": "ing-reti-logiche-t",
+            "telegram": ""
           }
         ]
       },
@@ -133,35 +156,43 @@
         "teachings": [
           {
             "name": "Matematica applicata",
-            "url": "ing-matematica-applicata-t"
+            "url": "ing-matematica-applicata-t",
+            "telegram": ""
           },
           {
             "name": "Calcolatori elettronici",
-            "url": "ing-calcolatori-elettronici-t"
+            "url": "ing-calcolatori-elettronici-t",
+            "telegram": ""
           },
           {
             "name": "Fisica generale",
-            "url": "ing-fisica-generale-t"
+            "url": "ing-fisica-generale-t",
+            "telegram": ""
           },
           {
             "name": "Sistemi informativi",
-            "url": "ing-sistemi-informativi-t"
+            "url": "ing-sistemi-informativi-t",
+            "telegram": ""
           },
           {
             "name": "Sistemi operativi",
-            "url": "ing-sistemi-operativi-t"
+            "url": "ing-sistemi-operativi-t",
+            "telegram": ""
           },
           {
             "name": "Fondamenti di telecomunicazioni",
-            "url": "ing-fondamenti-di-telecomunicazioni-t"
+            "url": "ing-fondamenti-di-telecomunicazioni-t",
+            "telegram": ""
           },
           {
             "name": "Economia e organizzazione aziendale",
-            "url": "ing-economia-e-organizzazione-aziendale-t"
+            "url": "ing-economia-e-organizzazione-aziendale-t",
+            "telegram": ""
           },
           {
             "name": "Elettrotecnica",
-            "url": "ing-elettrotecnica-t"
+            "url": "ing-elettrotecnica-t",
+            "telegram": ""
           }
         ]
       }
@@ -177,19 +208,23 @@
         "teachings": [
           {
             "name": "Usability e user experience design",
-            "url": "usability-e-user-experience-design"
+            "url": "usability-e-user-experience-design",
+            "telegram": ""
           },
           {
             "name": "Complementi di linguaggi di programmazione",
-            "url": "complementi-di-linguaggi-di-programmazione"
+            "url": "complementi-di-linguaggi-di-programmazione",
+            "telegram": ""
           },
           {
             "name": "Complementi di basi di dati",
-            "url": "complementi-di-basi-di-dati"
+            "url": "complementi-di-basi-di-dati",
+            "telegram": ""
           },
           {
             "name": "Intelligenza artificiale",
-            "url": "intelligenza-artificiale"
+            "url": "intelligenza-artificiale",
+            "telegram": ""
           }
         ]
       }
@@ -205,7 +240,8 @@
         "teachings": [
           {
             "name": "Programmazione Concorrente e Distribuita",
-            "url": "isi-programmazione-concorrente-e-distribuita"
+            "url": "isi-programmazione-concorrente-e-distribuita",
+            "telegram": ""
           }
         ]
       }
