@@ -10,32 +10,38 @@
           {
             "name": "Architettura degli elaboratori",
             "url": "architettura-degli-elaboratori",
-            "telegram": "joinchat/kXM-_CadypQwOGVk"
+            "telegram": "joinchat/kXM-_CadypQwOGVk",
+            "optional": false
           },
           {
             "name": "Logica per l'informatica",
             "url": "logica-per-informatica",
-            "telegram": "joinchat/HEBiPjOx_SpmYzY0"
+            "telegram": "joinchat/HEBiPjOx_SpmYzY0",
+            "optional": false
           },
           {
             "name": "Programmazione",
             "url": "programmazione",
-            "telegram": "joinchat/z1kz0BRjFr8zYjI0"
+            "telegram": "joinchat/z1kz0BRjFr8zYjI0",
+            "optional": false
           },
           {
             "name": "Algebra e geometria",
             "url": "algebra-e-geometria",
-            "telegram": "joinchat/m5fn6ZffZvk0NGZk"
+            "telegram": "joinchat/m5fn6ZffZvk0NGZk",
+            "optional": false
           },
           {
             "name": "Algoritmi e strutture dati",
             "url": "algoritmi-e-strutture-di-dati",
-            "telegram": "joinchat/wSafC8l9ul1iNTE8"
+            "telegram": "joinchat/wSafC8l9ul1iNTE8",
+            "optional": false
           },
           {
             "name": "Analisi matematica",
             "url": "analisi-matematica",
-            "telegram": "joinchat/60_5FO9onfo4YmJk"
+            "telegram": "joinchat/60_5FO9onfo4YmJk",
+            "optional": false
           }
         ]
       },
@@ -45,37 +51,44 @@
           {
             "name": "Calcolo numerico",
             "url": "calcolo-numerico",
-            "telegram": "joinchat/h1lypfBFdEZkYzFk"
+            "telegram": "joinchat/h1lypfBFdEZkYzFk",
+            "optional": false
           },
           {
             "name": "Ottimizzazione combinatoria",
             "url": "ottimizzazione-combinatoria",
-            "telegram": "joinchat/klw79l5tkPM1NWQ0"
+            "telegram": "joinchat/klw79l5tkPM1NWQ0",
+            "optional": false
           },
           {
             "name": "Calcolo delle probabilità e statistica",
             "url": "calcolo-delle-probabilita-e-statistica",
-            "telegram": "+j7GRbdJlwPExYzc0"
+            "telegram": "+j7GRbdJlwPExYzc0",
+            "optional": false
           },
           {
             "name": "Tecnologie web",
             "url": "tecnologie-web",
-            "telegram": "+nwEQesjR6FRmYzk0"
+            "telegram": "+nwEQesjR6FRmYzk0",
+            "optional": false
           },
           {
             "name": "Linguaggi di programmazione",
             "url": "linguaggi-di-programmazione",
-            "telegram": "joinchat/4v-08oT6QWk0ZmM8"
+            "telegram": "joinchat/4v-08oT6QWk0ZmM8",
+            "optional": false
           },
           {
             "name": "Reti di calcolatori",
             "url": "reti-di-calcolatori",
-            "telegram": "joinchat/Sw2Ykp0-0mM1Zjdk"
+            "telegram": "joinchat/Sw2Ykp0-0mM1Zjdk",
+            "optional": false
           },
           {
             "name": "Sistemi operativi",
             "url": "sistemi-operativi",
-            "telegram": "joinchat/2hUcGLfY7Gc2MTA8"
+            "telegram": "joinchat/2hUcGLfY7Gc2MTA8",
+            "optional": false
           }
         ]
       },
@@ -85,27 +98,32 @@
           {
             "name": "Basi di dati",
             "url": "basi-di-dati",
-            "telegram": "datidibasi"
+            "telegram": "datidibasi",
+            "optional": false
           },
           {
             "name": "Ingegneria del software",
             "url": "ingegneria-del-software",
-            "telegram": "ingegneriaSWunibo"
+            "telegram": "ingegneriaSWunibo",
+            "optional": false
           },
           {
             "name": "Introduzione all'apprendimento automatico",
             "url": "introduzione-apprendimento-automatico",
-            "telegram": "appr_auto"
+            "telegram": "appr_auto",
+            "optional": false
           },
           {
             "name": "Fondamenti di cybersecurity",
             "url": "fondamenti-di-cybersecurity",
-            "telegram": "+_NRNOm34gOcxZTQ0"
+            "telegram": "+_NRNOm34gOcxZTQ0",
+            "optional": false
           },
           {
             "name": "Informatica teorica",
             "url": "informatica-teorica",
-            "telegram": "infoteorica"
+            "telegram": "infoteorica",
+            "optional": false
           }
         ]
       }
@@ -122,32 +140,38 @@
           {
             "name": "Fondamenti di informatica 1",
             "url": "ing-fondamenti-di-informatica-1-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Analisi 1",
             "url": "ing-analisi-matematica-1-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Algebra e geometria",
             "url": "ing-algebra-e-geometria-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Fondamenti di informatica 2",
             "url": "ing-fondamenti-di-informatica-2-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Analisi 2",
             "url": "ing-analisi-matematica-2-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Reti logiche",
             "url": "ing-reti-logiche-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           }
         ]
       },
@@ -157,42 +181,50 @@
           {
             "name": "Matematica applicata",
             "url": "ing-matematica-applicata-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Calcolatori elettronici",
             "url": "ing-calcolatori-elettronici-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Fisica generale",
             "url": "ing-fisica-generale-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Sistemi informativi",
             "url": "ing-sistemi-informativi-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Sistemi operativi",
             "url": "ing-sistemi-operativi-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Fondamenti di telecomunicazioni",
             "url": "ing-fondamenti-di-telecomunicazioni-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Economia e organizzazione aziendale",
             "url": "ing-economia-e-organizzazione-aziendale-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           },
           {
             "name": "Elettrotecnica",
             "url": "ing-elettrotecnica-t",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           }
         ]
       }
@@ -209,22 +241,98 @@
           {
             "name": "Usability e user experience design",
             "url": "usability-e-user-experience-design",
-            "telegram": "uux_unibo"
+            "telegram": "uux_unibo",
+            "optional": false
           },
           {
             "name": "Complementi di linguaggi di programmazione",
             "url": "complementi-di-linguaggi-di-programmazione",
-            "telegram": "CLP_unibo"
+            "telegram": "CLP_unibo",
+            "optional": false
           },
           {
             "name": "Complementi di basi di dati",
             "url": "complementi-di-basi-di-dati",
-            "telegram": "cdb_unibo"
+            "telegram": "cdb_unibo",
+            "optional": false
           },
           {
             "name": "Intelligenza artificiale",
             "url": "intelligenza-artificiale",
-            "telegram": "ai_unibo"
+            "telegram": "ai_unibo",
+            "optional": false
+          },
+          {
+            "name": "Digital forensics",
+            "url": "digital-forensics",
+            "telegram": "",
+            "optional": true
+          },
+          {
+            "name": "Decision making with constraint programming",
+            "url": "decision-making-with-constraint-programming",
+            "telegram": "CP_unibo",
+            "optional": true
+          },
+          {
+            "name": "Ingegneria del software orientata ai servizi",
+            "url": "ingegneria-del-software-orientata-ai-servizi",
+            "telegram": "ISOS_unibo",
+            "optional": true
+          },
+          {
+            "name": "Simulazione di sistemi",
+            "url": "simulazione-di-sistemi",
+            "telegram": "dfw4FnUAFEE3MWQ0",
+            "optional": true
+          },
+          {
+            "name": "Modelli e sistemi concorrenti",
+            "url": "modelli-e-sistemi-concorrenti",
+            "telegram": "MSC_unibo",
+            "optional": true
+          },
+          {
+            "name": "Computer graphics",
+            "url": "computer graphics",
+            "telegram": "graphics_unibo",
+            "optional": true
+          },
+          {
+            "name": "Matematica computazionale",
+            "url": "matematica-computazionale",
+            "telegram": "matcomp_unibo",
+            "optional": true
+          },
+          {
+            "name": "Modelli probabilistici",
+            "url": "modelli-probabilistici",
+            "telegram": "modprob_unibo",
+            "optional": true
+          },
+          {
+            "name": "Sistemi context aware",
+            "url": "sistemi-context-aware",
+            "telegram": "SCA_unibo",
+            "optional": true
+          },
+          {
+            "name": "Fisica dei sistemi complessi",
+            "url": "fisica-dei-sistemi-complessi",
+            "telegram": "",
+            "optional": true
+          },
+          {
+            "name": "Fondamenti logici del informatica",
+            "url": "fondamenti-logici-del-informatica",
+            "telegram": "",
+            "optional": true
+          },
+          {
+            "name": "Didattica del informatica",
+            "url": "didattica-del-informatica",
+            "telegram": "didatticainfo_unibo",
+            "optional": true
           }
         ]
       }
@@ -241,7 +349,8 @@
           {
             "name": "Programmazione Concorrente e Distribuita",
             "url": "isi-programmazione-concorrente-e-distribuita",
-            "telegram": ""
+            "telegram": "",
+            "optional": false
           }
         ]
       }
