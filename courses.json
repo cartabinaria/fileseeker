@@ -293,8 +293,8 @@
             "optional": true
           },
           {
-            "name": "Didattica del informatica",
-            "url": "didattica-del-informatica",
+            "name": "Didattica dell'informatica",
+            "url": "didattica-informatica",
             "telegram": "didatticainfo_unibo",
             "optional": true
           }
