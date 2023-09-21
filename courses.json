@@ -229,7 +229,7 @@
           {
             "name": "Digital forensics",
             "url": "digital-forensics",
-            "telegram": "",
+            "telegram": "dforensics_unibo",
             "optional": true
           },
           {
@@ -283,13 +283,13 @@
           {
             "name": "Fisica dei sistemi complessi",
             "url": "fisica-dei-sistemi-complessi",
-            "telegram": "",
+            "telegram": "unibo_fisica_sistemi_complessi",
             "optional": true
           },
           {
             "name": "Fondamenti logici del informatica",
             "url": "fondamenti-logici-del-informatica",
-            "telegram": "",
+            "telegram": "fondamenti_unibo",
             "optional": true
           },
           {
