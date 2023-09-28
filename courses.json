@@ -195,6 +195,27 @@
             "telegram": ""
           }
         ]
+      },
+      {
+        "year": 3,
+        "teachings": [
+          {
+            "name": "Reti di calcolatori",
+            "url": "ing-reti-di-calcolatori-t"
+          },
+          {
+            "name": "Controlli automatici",
+            "url": "ing-controlli-automatici-t"
+          },
+          {
+            "name": "Tecnologie web",
+            "url": "ing-tecnologie-web-t"
+          },
+          {
+            "name": "Elettronica",
+            "url": "ing-elettronica-t"
+          }
+        ]
       }
     ]
   },
