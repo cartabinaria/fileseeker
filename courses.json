@@ -222,8 +222,13 @@
             "url": "ing-elettronica-t"
           },
           {
+            "name": "Amministazione di sistemi",
+            "url": "ing-laboratorio-amm-sistemi-t",
+            "optional": true
+          },
+          {
             "name": "Laboratorio di sicurezza informatica",
-            "url": "laboratorio-sicurezza-informatica",
+            "url": "ing-laboratorio-sicurezza-informatica-t",
             "optional": true
           }
         ]
