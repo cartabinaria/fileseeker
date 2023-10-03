@@ -106,7 +106,13 @@
             "name": "Informatica teorica",
             "url": "informatica-teorica",
             "telegram": "infoteorica"
-          }
+          },
+          {
+            "name": "Metodi logici per la filosofia",
+            "url": "metodi-logici-per-la-filosofia",
+            "telegram": "unibologica2",
+            "optional": true
+          },
         ]
       }
     ]
@@ -214,6 +220,11 @@
           {
             "name": "Elettronica",
             "url": "ing-elettronica-t"
+          },
+          {
+            "name": "Laboratorio di sicurezza informatica",
+            "url": "laboratorio-sicurezza-informatica",
+            "optional": true
           }
         ]
       }
