@@ -136,6 +136,12 @@
             "url": "storia-dell-informatica",
             "chat": "t.me/+82Kca29dpGFiMmY0",
             "optional": true
+          },
+          {
+            "name": "Fisica",
+            "url": "fisica",
+            "chat": "t.me/joinchat/EagakhBfGx7hcGXuj4uvBA",
+            "optional": true
           }
         ]
       }
