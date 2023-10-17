@@ -112,7 +112,31 @@
             "url": "metodi-logici-per-la-filosofia",
             "chat": "t.me/unibologica2",
             "optional": true
-          }
+          },
+          {
+            "name": "Laboratorio di applicazioni mobili",
+            "url": "laboratorio-di-applicazioni-mobili",
+            "chat": "t.me/+kGgOP9VgHotlMDg8",
+            "optional": true
+          },
+          {
+            "name": "Strategia aziendale",
+            "url": "strategia-aziendale",
+            "chat": "t.me/+DmlZ4Q31uTQ5YTE0",
+            "optional": true
+          },
+          {
+            "name": "Progetto di sistemi virtuali",
+            "url": "progetto-di-sistemi-virtuali",
+            "chat": "t.me/p_sis_virt",
+            "optional": true
+          },
+          {
+            "name": "Storia dell'informatica e dei dispositivi di calcolo",
+            "url": "storia-dell-informatica",
+            "chat": "t.me/+82Kca29dpGFiMmY0",
+            "optional": true
+          },
         ]
       }
     ]
