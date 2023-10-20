@@ -391,5 +391,22 @@
         ]
       }
     ]
+  },
+  {
+    "id": "Artificial Intelligence",
+    "name": "Artificial Intelligence Master's Degree",
+    "icon": "🧠",
+    "years": [
+      {
+        "year": 1,
+        "teachings": [
+          {
+            "name": "Deep Learning",
+            "url": "deep-learning",
+            "chat": ""
+          }
+        ]
+      }
+    ]
   }
 ]
