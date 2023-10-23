@@ -48,7 +48,7 @@ jobs:
           statik
           -page /usr/share/page.gohtml
           -l
-          -b "https://${{ github.event.repository.owner.name }}.github.io/${{ github.event.repository.name }}/"
+          -b "https://risorse.students.cs.unibo.it/${{ github.event.repository.name }}/"
           -i "${{inputs.regex_include}}"
           site
 
@@ -67,7 +67,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: "https://risorse.students.cs.unibo.it/${{ github.event.repository.name }}/"
 
     steps:
       - name: Download static site artifact
