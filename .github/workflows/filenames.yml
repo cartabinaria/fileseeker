@@ -23,20 +23,38 @@ jobs:
       - name: Check the `appunti` folder
         run: filenameslinter appunti
 
+      - name: Check the `notes` folder
+        run: filenameslinter notes
+
       - name: Check the `dispense` folder
         run: filenameslinter -definition .config/enumerazione.synta dispense
-       
+
+      - name: Check the `booklets` folder
+        run: filenameslinter -definition .config/enumerazione.synta booklets
+
       - name: Check the `esercizi` folder
         run: filenameslinter esercizi
+
+      - name: Check the `exercises` folder
+        run: filenameslinter exercises
 
       - name: Check the `lucidi` folder
         run: filenameslinter -definition .config/enumerazione.synta lucidi
 
+      - name: Check the `slides` folder
+        run: filenameslinter -definition .config/enumerazione.synta slides
+
       - name: Check the `libri` folder
         run: filenameslinter libri
+
+      - name: Check the `books` folder
+        run: filenameslinter books
 
       - name: Check the `prove` folder
         run: filenameslinter -definition .config/prove.synta prove
 
-      - name: Check the `varie` folder
-        run: filenameslinter varie
+      - name: Check the `exams` folder
+        run: filenameslinter -definition .config/prove.synta exams
+
+      - name: Check the `misc` folder
+        run: filenameslinter misc
