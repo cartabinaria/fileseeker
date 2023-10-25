@@ -14,9 +14,9 @@ giorno = \d{2}
 mese = \d{2}
 
 ; Il tipo del documento caricato. Può essere testo o soluzione.
-tipo = testo|soluzione
+tipo = testo|exam|soluzione|solution
 
 ; La tipologia del documento. Ad esempio: scritto, orale1, progetto2, totale.
-tipologia = scritto|totale|parziale\d|esercitazione\d?|orale\d?|progetto\d?
+tipologia = scritto|written-test|totale|final|parziale\d|midterm\d|esercitazione\d?|simulation\d?|orale\d?|oral-test\d?|progetto\d?|project\d?
 
 > tipologia-anno(-mese)?(-giorno)?(-extra)?-tipo(-extra)?.estensione
