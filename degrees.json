@@ -13,7 +13,7 @@
             "architettura-degli-elaboratori",
             "logica-per-informatica",
             "programmazione",
-            "algoritmi-e-strutture-dati",
+            "algoritmi-e-strutture-di-dati",
             "algebra-e-geometria"
           ]
         }
@@ -45,7 +45,7 @@
           ],
           "electives": [
             "laboratorio-di-applicazioni-mobili",
-            "metodi-logici-per-linformatica",
+            "metodi-logici-per-la-filosofia",
             "progetto-di-sistemi-virtuali",
             "strategia-aziendale",
             "storia-informatica-e-dei-dispositivi-di-calcolo",
@@ -67,7 +67,7 @@
         "year": 1,
         "teachings": {
           "mandatory": [
-            "ing-fondamenti-di-inforamtica-1-t",
+            "ing-fondamenti-di-informatica-1-t",
             "ing-analisi-matematica-1-t",
             "ing-algebra-e-geometria-t",
             "ing-fondamenti-di-informatica-2-t",
