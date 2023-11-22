@@ -1,0 +1,65 @@
+{
+  "l_informatica": {
+    "course": "Informatica",
+    "type": "laurea",
+    "name": "informatica",
+    "url": "orario-lezioni"
+  },
+  "l_informaticamanagement": {
+    "course": "Informatica per il Management",
+    "type": "laurea",
+    "name": "InformaticaManagement",
+    "url": "orario-lezioni"
+  },
+  "l_ingegneriainformatica": {
+    "course": "Ingegneria Informatica",
+    "type": "laurea",
+    "name": "ingegneriainformatica",
+    "url": "orario-lezioni"
+  },
+  "l_ingegneriascienceinformatiche": {
+    "course": "Ingegneria e Scienze Informatiche",
+    "type": "laurea",
+    "name": "IngegneriaScienzeInformatiche",
+    "url": "orario-lezioni"
+  },
+  "lm_informatica_software_techniques": {
+    "course": "Informatica magistrale - Tecniche del software",
+    "type": "magistrale",
+    "name": "informatica",
+    "curricula": "A58-000",
+    "url": "orario-lezioni"
+  },
+  "lm_informatica_management": {
+    "course": "Informatica magistrale - Informatica per il management",
+    "type": "magistrale",
+    "name": "informatica",
+    "curricula": "991-000",
+    "url": "orario-lezioni"
+  },
+  "lm_informatica_systems_and_networks": {
+    "course": "Informatica magistrale - Sistemi e reti",
+    "type": "magistrale",
+    "name": "informatica",
+    "curricula": "992-000",
+    "url": "orario-lezioni"
+  },
+  "lm_ingegneriascienzeinformatiche": {
+    "course": "Ingegneria e Scienze Informatiche Magistrale",
+    "type": "magistrale",
+    "name": "IngegneriaScienzeInformatiche",
+    "url": "orario-lezioni"
+  },
+  "lm_ingegneriainformatica": {
+    "course": "Ingegneria e Scienze Informatiche Magistrale",
+    "type": "magistrale",
+    "name": "ingegneriainformatica",
+    "url": "orario-lezioni"
+  },
+  "lm_ai": {
+    "course": "Artificial Intelligence",
+    "type": "2cycle",
+    "name": "artificial-intelligence",
+    "url": "timetable"
+  }
+}
