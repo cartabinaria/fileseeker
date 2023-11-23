@@ -1,6 +1,7 @@
 [
     {    
-        "informabot": [
+        "project":"informabot",
+        "mantainers": [
             {
                 "Id":"344994427",
                 "Username":"Tastier"
