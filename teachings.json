@@ -116,96 +116,84 @@
     "url": "digital-forensics",
     "chat": "t.me/dforensics_unibo",
     "website": "479039",
-    "professors": ["alessandro.amoroso"],
-    "optional": true
+    "professors": ["alessandro.amoroso"]
   },
   {
     "name": "Decision making with constraint programming",
     "url": "decision-making-with-constraint-programming",
     "chat": "t.me/CP_unibo",
     "website": "479038",
-    "professors": ["zeynep.kiziltan"],
-    "optional": true
+    "professors": ["zeynep.kiziltan"]
   },
   {
     "name": "Ingegneria del software orientata ai servizi",
     "url": "ingegneria-del-software-orientata-ai-servizi",
     "chat": "t.me/ISOS_unibo",
     "website": "479037",
-    "professors": ["davide.rossi", "ivan.lanese"],
-    "optional": true
+    "professors": ["davide.rossi", "ivan.lanese"]
   },
   {
     "name": "Simulazione di sistemi",
     "url": "simulazione-di-sistemi",
     "chat": "t.me/dfw4FnUAFEE3MWQ0",
     "website": "479034",
-    "professors": ["lorenzo.donatiello"],
-    "optional": true
+    "professors": ["lorenzo.donatiello"]
   },
   {
     "name": "Modelli e sistemi concorrenti",
     "url": "modelli-e-sistemi-concorrenti",
     "chat": "t.me/MSC_unibo",
     "website": "479035",
-    "professors": ["roberto.gorrieri"],
-    "optional": true
+    "professors": ["roberto.gorrieri"]
   },
   {
     "name": "Computer graphics",
     "url": "computer-graphics",
     "chat": "t.me/graphics_unibo",
     "website": "479028",
-    "professors": ["giulio.casciola"],
-    "optional": true
+    "professors": ["giulio.casciola"]
   },
   {
     "name": "Matematica computazionale",
     "url": "matematica-computazionale",
     "chat": "t.me/matcomp_unibo",
     "website": "479026",
-    "professors": ["giulia.spaletta"],
-    "optional": true
+    "professors": ["giulia.spaletta"]
   },
   {
     "name": "Modelli probabilistici",
     "url": "modelli-probabilistici",
     "chat": "t.me/modprob_unibo",
     "website": "479025",
-    "professors": ["stefano.pagliarini"],
-    "optional": true
+    "professors": ["stefano.pagliarini"]
   },
   {
     "name": "Sistemi context aware",
     "url": "sistemi-context-aware",
     "chat": "t.me/SCA_unibo",
     "website": "479036",
-    "professors": ["marco.difelice3"],
-    "optional": true
+    "professors": ["marco.difelice3"]
   },
   {
     "name": "Fisica dei sistemi complessi",
     "url": "fisica-dei-sistemi-complessi",
     "chat": "t.me/unibo_fisica_sistemi_complessi",
     "website": "479024",
-    "professors": ["armando.bazzani"],
-    "optional": true
+    "professors": ["armando.bazzani"]
   },
   {
     "name": "Fondamenti logici dell'informatica",
     "url": "fondamenti-logici-informatica",
     "chat": "t.me/fondamenti_unibo",
     "website": "479027",
-    "professors": ["claudio.sacerdoticoen", "fabio.zanasi"],
-    "optional": true
+    "professors": ["claudio.sacerdoticoen", "fabio.zanasi"]
   },
   {
     "name": "Didattica dell'informatica",
     "url": "didattica-informatica",
     "chat": "t.me/didatticainfo_unibo",
     "website": "479040",
-    "professors": ["renzo.davoli", "michael.lodi"],
-    "optional": true
+    "professors": ["renzo.davoli", "michael.lodi"]
   },
   {
     "name": "Programmazione Concorrente e Distribuita",
@@ -370,46 +358,40 @@
     "url": "metodi-logici-per-la-filosofia",
     "chat": "t.me/unibologica2",
     "website": "422963",
-    "professors": ["eugenio.orlandelli"],
-    "optional": true
+    "professors": ["eugenio.orlandelli"]
   },
   {
     "name": "Laboratorio di applicazioni mobili",
     "url": "laboratorio-di-applicazioni-mobili",
     "chat": "t.me/+kGgOP9VgHotlMDg8",
     "website": "366984",
-    "professors": ["luciano.bononi", "federico.montori"],
-    "optional": true
+    "professors": ["luciano.bononi", "federico.montori"]
   },
   {
     "name": "Strategia aziendale",
     "url": "strategia-aziendale",
     "chat": "t.me/+DmlZ4Q31uTQ5YTE0",
     "website": "422036",
-    "professors": ["sabrina.scarito"],
-    "optional": true
+    "professors": ["sabrina.scarito"]
   },
   {
     "name": "Progetto di sistemi virtuali",
     "url": "progetto-di-sistemi-virtuali",
     "chat": "t.me/p_sis_virt",
     "website": "354042",
-    "professors": ["renzo.davoli"],
-    "optional": true
+    "professors": ["renzo.davoli"]
   },
   {
     "name": "Storia dell'informatica e dei dispositivi di calcolo",
     "url": "storia-informatica-e-dei-dispositivi-di-calcolo",
     "chat": "t.me/+82Kca29dpGFiMmY0",
     "website": "447912",
-    "professors": ["giorgio.casadei"],
-    "optional": true
+    "professors": ["giorgio.casadei"]
   },
   {
     "name": "Fisica",
     "url": "fisica",
-    "chat": "t.me/joinchat/EagakhBfGx7hcGXuj4uvBA",
-    "optional": true
+    "chat": "t.me/joinchat/EagakhBfGx7hcGXuj4uvBA"
   },
   {
     "name": "Reti di calcolatori T",
@@ -445,8 +427,7 @@
     "url": "ing-laboratorio-amm-sistemi-t",
     "chat": "chat.whatsapp.com/HB1Gp5ZlMzR9xIhgUwEkrA",
     "website": "434899",
-    "professors": ["marco.prandini"],
-    "optional": true
+    "professors": ["marco.prandini"]
   },
   {
     "degree": "ingegneria",
@@ -454,8 +435,7 @@
     "url": "ing-laboratorio-sicurezza-informatica-t",
     "chat": "chat.whatsapp.com/HB1Gp5ZlMzR9xIhgUwEkrA",
     "website": "434900",
-    "professors": ["marco.prandini"],
-    "optional": true
+    "professors": ["marco.prandini"]
   },
   {
     "name": "Image Processing and Computer Vision",
