@@ -485,5 +485,19 @@
     "chat": "t.me/joinchat/wlC8ZSkpVWQ1Zjdk",
     "website": "446595",
     "professors": ["ugo.dallago", "simone.martini", "maurizio.gabbrielli"]
+  },
+  {
+    "name": "Natural Language Processing",
+    "url": "natural-language-processing",
+    "chat": "t.me/+V5sJeqdMEbExYjg0",
+    "website": "446602",
+    "professors": ["paolo.torroni"]
+  },
+  {
+    "name": "Ethics in Artificial Intelligence",
+    "url": "ethics-in-artificial-intelligence",
+    "chat": "t.me/+0TmpmZ_THJ1jYzdk",
+    "website": "446601",
+    "professors": ["giovanni.sartor", "francesca.lagiogia", "roberta.calegari"]
   }
 ]
