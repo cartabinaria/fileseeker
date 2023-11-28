@@ -443,5 +443,47 @@
     "chat": "t.me/joinchat/FCYXxcp-3vo2NTFk",
     "website": "446598",
     "professors": ["giuseppe.lisanti", "samuele.salti"]
+  },
+  {
+    "name": "Fundamentals of Artificial Intelligence and Knowledge Representation",
+    "url": "fundamentals-of-artificial-intelligence-and-knowledge-representation",
+    "chat": "t.me/joinchat/SZP3PwNo4H5kNjFk",
+    "website": "446566",
+    "professors": ["michela.milano", "federico.chesani", "paolo.torroni"]
+  },
+  {
+    "name": "Statistical and Mathematical Methods for Artificial Intelligence",
+    "url": "statistical-and-mathematical-methods-for-artificial-intelligence",
+    "chat": "t.me/joinchat/Acwl11_NZ0Q3NzQ8",
+    "website": "446599",
+    "professors": ["elena.loli"]
+  },
+  {
+    "name": "Cognition and Neuroscience",
+    "url": "cognition-and-neuroscience",
+    "chat": "t.me/+nHfD_gR9CKc5NzA8",
+    "website": "446547",
+    "professors": ["francesca.starita", "g.dipellegrino"]
+  },
+  {
+    "name": "Combinatorial Decision Making and Optimisation",
+    "url": "combinatorial-decision-making-and-optimisation",
+    "chat": "https://t.me/+jUwtBv6YFV4wNGRk",
+    "website": "446597",
+    "professors": ["zeynep.kiziltan", "roberto.amadini"]
+  },
+  {
+    "name": "Machine Learning and Data Mining",
+    "url": "machine-learning-and-data-mining",
+    "chat": "t.me/joinchat/dQz4em3yZqU2ODQ0",
+    "website": "491908",
+    "professors": ["claudio.sartori"]
+  },
+  {
+    "name": "Languages and Algorithms for Artificial Intelligence",
+    "url": "languages-and-algorithms-for-artificial-intelligence",
+    "chat": "t.me/joinchat/wlC8ZSkpVWQ1Zjdk",
+    "website": "446595",
+    "professors": ["ugo.dallago", "simone.martini", "maurizio.gabbrielli"]
   }
 ]

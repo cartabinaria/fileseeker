@@ -156,13 +156,31 @@
   },
   {
     "id": "artificial-intelligence",
-    "name": "Artificial Intelligence Master's Degree",
+    "name": "Master in Artificial Intelligence",
     "icon": "🧠",
     "years": [
       {
         "year": 1,
         "teachings": {
-          "mandatory": ["deep-learning", "image-processing-and-computer-vision"]
+          "mandatory": [
+            "fundamentals-of-artificial-intelligence-and-knowledge-representation",
+            "statistical-and-mathematical-methods-for-artificial-intelligence",
+            "cognition-and-neuroscience",
+            "combinatorial-decision-making-and-optimisation",
+            "image-processing-and-computer-vision",
+            "deep-learning",
+            "machine-learning-and-data-mining",
+            "languages-and-algorithms-for-artificial-intelligence"
+          ]
+        }
+      },
+      {
+        "year": 2,
+        "teachings": {
+          "mandatory": [
+            "natural-language-processing",
+            "ethics-in-artificial-intelligence"
+          ]
         }
       }
     ]
