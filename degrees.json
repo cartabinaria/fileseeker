@@ -161,6 +161,7 @@
     "years": [
       {
         "year": 1,
+        "chat": "t.me/officialai2324",
         "teachings": {
           "mandatory": [
             "fundamentals-of-artificial-intelligence-and-knowledge-representation",
@@ -176,6 +177,7 @@
       },
       {
         "year": 2,
+        "chat": "t.me/unibo_ai_2022",
         "teachings": {
           "mandatory": [
             "natural-language-processing",
