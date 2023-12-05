@@ -1,10 +1,64 @@
 {
-  "Laurea Informatica": [749955681, 609728909, 733488502, 344994427, 950367394],
-  "Laurea Informatica per il Managment": [],
-  "Laurea Ingegneria Informatica": [],
-  "Laurea in Ingegneria e Scienze informatiche": [],
-  "Laurea Magistrale": [265198910, 1387406495, 45559132],
-  "Articial Intelligent": [],
-  "Laurea Magistrale in Ingegneria e Sceinze Informatiche": []
+  "l_informatica": {
+    "course": "Informatica",
+    "representatives": [
+      "mathieu.linty@studio.unibo.it",
+      "samuele.castiglioni@studio.unibo.it",
+      "samuele.musiani@studio.unibo.it",
+      "omar.ayache@studio.unibo.it",
+      "xuanqiang.huang@studio.unibo.it"
+    ]
+  },
+  "l_informaticamanagement": {
+    "course": "Informatica per il Management",
+    "representatives": []
+  },
+  "l_ingegneriainformatica": {
+    "course": "Ingegneria Informatica",
+    "representatives": []
+  },
+  "l_ingegneriascienceinformatiche": {
+    "course": "Ingegneria e Scienze Informatiche",
+    "representatives": []
+  },
+  "lm_informatica_software_techniques": {
+    "course": "Informatica magistrale - Tecniche del software",
+    "representatives": [
+      "federica.grisendi@studio.unibo.it",
+      "davide.cristoni@studio.unibo.it",
+      "gabriele.genovese2@studio.unibo.it"
+    ]
+  },
+  "lm_informatica_management": {
+    "course": "Informatica magistrale - Informatica per il management",
+    "representatives": [
+      "federica.grisendi@studio.unibo.it",
+      "davide.cristoni@studio.unibo.it",
+      "gabriele.genovese2@studio.unibo.it"
+    ]
+  },
+  "lm_informatica_systems_and_networks": {
+    "course": "Informatica magistrale - Sistemi e reti",
+    "representatives": [
+      "federica.grisendi@studio.unibo.it",
+      "davide.cristoni@studio.unibo.it",
+      "gabriele.genovese2@studio.unibo.it"
+    ]
+  },
+  "lm_ingegneriascienzeinformatiche": {
+    "course": "Ingegneria e Scienze Informatiche Magistrale",
+    "representatives": []
+  },
+  "lm_intelligent_systems": {
+    "course": "Intelligent Embedded Systems",
+    "representatives": []
+  },
+  "lm_ingegneriainformatica": {
+    "course": "Ingegneria Informatica Magistrale",
+    "representatives": []
+  },
+  "lm_ai": {
+    "course": "Artificial Intelligence",
+    "representatives": []
+  }
 }
-
