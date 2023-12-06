@@ -15,7 +15,11 @@
   },
   "l_ingegneriainformatica": {
     "course": "Ingegneria Informatica",
-    "representatives": []
+    "representatives": [
+      "andrea.bocchini5@studio.unibo.it",
+      "eyadlorenzo.issa@studio.unibo.it",
+      "andrea.manoni2@studio.unibo.it"
+    ]
   },
   "l_ingegneriascienceinformatiche": {
     "course": "Ingegneria e Scienze Informatiche",
