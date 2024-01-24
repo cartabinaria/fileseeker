@@ -499,5 +499,13 @@
     "chat": "t.me/+0TmpmZ_THJ1jYzdk",
     "website": "446601",
     "professors": ["giovanni.sartor", "francesca.lagiogia", "roberta.calegari"]
+  },
+  {
+    "name": "Computational Statistics",
+    "url": "isi-computational-statistics",
+    "chat": "",
+    "website": "454724",
+    "professors": ["saverio.ranciati"]
   }
+  
 ]
