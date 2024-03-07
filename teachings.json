@@ -512,6 +512,13 @@
     "chat": "",
     "website": "454724",
     "professors": ["saverio.ranciati"]
+  },
+  {
+    "name": "Architettura di Internet",
+    "url": "ipim-architettura-di-internet",
+    "chat": "",
+    "website": "319964",
+    "professors": ["marco.roccetti"]
   }
   
 ]
