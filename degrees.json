@@ -61,6 +61,22 @@
     ]
   },
   {
+    "id": "informatica-per-il-management",
+    "name": "Informatica per il Management",
+    "icon": "💻",
+    "years": [
+      {
+        "year": 1,
+        "chat": "t.me/unibo_info_manag",
+        "teachings": {
+          "mandatory": [
+            "architettura-di-internet"
+          ]
+        }
+      }
+    ]
+  },
+  {
     "id": "ingegneria",
     "name": "Ingegneria Informatica",
     "icon": "👨‍🔧",
