@@ -512,6 +512,83 @@
     "chat": "",
     "website": "454724",
     "professors": ["saverio.ranciati"]
+  },
+  {
+    "name": "Architettura di Internet",
+    "url": "ipim-architettura-di-internet",
+    "chat": "t.me/unibo_info_manag/5649",
+    "website": "319964",
+    "professors": ["marco.roccetti"]
+  },
+  {
+    "name": "Diritto di Internet",
+    "url": "ipim-diritto-di-internet",
+    "chat": "t.me/unibo_info_manag/5645",
+    "website": "320654",
+    "professors": ["matilde.ratti","giulio.errani2"]
+  },
+  {
+    "name": "Economia Aziendale",
+    "url": "ipim-economia-aziendale",
+    "chat": "t.me/unibo_info_manag/5650",
+    "website": "350744",
+    "professors": ["cristina.aprile2"]
+  },
+  {
+    "name": "Organizzazione Aziendale",
+    "url": "ipim-organizzazione-aziendale",
+    "chat": "t.me/unibo_info_manag/6123",
+    "website": "391043",
+    "professors": ["sabrina.pedrini"]
+  },
+  {
+    "name": "Programmazione Internet",
+    "url": "ipim-programmazione-internet",
+    "chat": "t.me/unibo_info_manag/5648",
+    "website": "402302",
+    "professors": ["angelo.diiorio","roberto.amadini"]
+  },
+  {
+    "name": "Finanza Aziendale",
+    "url": "ipim-finanza-aziendale",
+    "chat": "t.me/unibo_info_manag/6184",
+    "website": "320664",
+    "professors": ["emilio.tomasini"]
+  },
+  {
+    "name": "Metodi Numerici per il Calcolo",
+    "url": "ipim-metodi-numerici-per-il-calcolo",
+    "chat": "t.me/unibo_info_manag/6232",
+    "website": "375737",
+    "professors": ["giulio.casciola"]
+  },
+  {
+    "name": "Microeconomia",
+    "url": "ipim-microeconomia",
+    "chat": "t.me/unibo_info_manag/6182",
+    "website": "384287",
+    "professors": ["emanuele.bacchiega"]
+  },
+  {
+    "name": "Statistica Numerica",
+    "url": "ipim-statistica-numerica",
+    "chat": "t.me/unibo_info_manag/6233",
+    "website": "384286",
+    "professors": ["elena.loli"]
+  },
+  {
+    "name": "Teoria dell'Impresa",
+    "url": "ipim-teoria-impresa",
+    "chat": "t.me/unibo_info_manag/9479",
+    "website": "384290",
+    "professors": ["emanuele.bacchiega"]
+  },
+  {
+    "name": "Strategia, Organizzazione e Mercati",
+    "url": "ipim-strategia-organizzazione-mercati",
+    "chat": "t.me/unibo_info_manag",
+    "website": "421469",
+    "professors": ["edoardo.mollona"]
   }
   
 ]
