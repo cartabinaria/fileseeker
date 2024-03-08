@@ -516,9 +516,68 @@
   {
     "name": "Architettura di Internet",
     "url": "ipim-architettura-di-internet",
-    "chat": "",
     "website": "319964",
     "professors": ["marco.roccetti"]
+  },
+  {
+    "name": "Diritto di Internet",
+    "url": "ipim-diritto-di-internet",
+    "website": "320654",
+    "professors": ["matilde.ratti","giulio.errani2"]
+  },
+  {
+    "name": "Economia Aziendale",
+    "url": "ipim-economia-aziendale",
+    "website": "350744",
+    "professors": ["cristina.aprile2"]
+  },
+  {
+    "name": "Organizzazione Aziendale",
+    "url": "ipim-organizzazione-aziendale",
+    "website": "391043",
+    "professors": ["sabrina.pedrini"]
+  },
+  {
+    "name": "Programmazione Internet",
+    "url": "ipim-programmazione-internet",
+    "website": "402302",
+    "professors": ["angelo.diiorio","roberto.amadini"]
+  },
+  {
+    "name": "Finanza Aziendale",
+    "url": "ipim-finanza-aziendale",
+    "website": "320664",
+    "professors": ["emilio.tomasini"]
+  },
+  {
+    "name": "Metodi Numerici per il Calcolo",
+    "url": "ipim-metodi-numerici-per-il-calcolo",
+    "website": "375737",
+    "professors": ["giulio.casciola"]
+  },
+  {
+    "name": "Microeconomia",
+    "url": "ipim-microeconomia",
+    "website": "emanuele.bacchiega",
+    "professors": ["emanuele.bacchiega"]
+  },
+  {
+    "name": "Statistica Numerica",
+    "url": "ipim-statistica-numerica",
+    "website": "384286",
+    "professors": ["elena.loli"]
+  },
+  {
+    "name": "Teoria dell'Impresa",
+    "url": "ipim-teoria-impresa",
+    "website": "384290",
+    "professors": ["emanuele.bacchiega"]
+  },
+  {
+    "name": "Strategia, Organizzazione e Mercati",
+    "url": "ipim-strategia-organizzazione-mercati",
+    "website": "421469",
+    "professors": ["edoardo.mollona"]
   }
   
 ]
