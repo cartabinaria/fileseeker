@@ -34,57 +34,6 @@
         }
       },
       {
-        "id": "informatica-per-il-management",
-        "name": "Informatica per il Management",
-        "icon": "💻",
-        "years": [
-          {
-            "year": 1,
-            "chat": "t.me/unibo_info_manag",
-            "teachings": {
-              "mandatory": [
-                "ipim-architettura-di-internet",
-                "ipim-diritto-di-internet",
-                "ipim-economia-aziendale",
-                "ipim-algebra-lineare",
-                "ipim-analisi-matematica",
-                "ipim-organizzazione-aziendale",
-                "ipim-programmazione-internet"
-              ]
-            }
-          },
-          {
-            "year": 2,
-            "chat": "t.me/unibo_info_manag",
-            "teachings": {
-              "mandatory": [
-                "ipim-finanza-aziendale",
-                "ipim-metodi-numerici-per-il-calcolo",
-                "ipim-microeconomia",
-                "ipim-sistemi-operativi",
-                "ipim-statistica-numerica",
-                "ipim-strategia-aziendale",
-                "ipim-algoritmi-e-strutture-dati"
-              ]
-            }
-          },
-          {
-            "year": 3,
-            "chat": "t.me/unibo_info_manag",
-            "teachings": {
-              "mandatory": [
-                "ipim-basi-di-dati",
-                "ipim-ingegneria-del-software",
-                "ipim-laboratorio-di-applicazioni-mobili",
-                "ipim-tecnologie-web",
-                "ipim-teoria-impresa",
-                "ipim-strategia-organizzazione-mercati"
-              ]
-            }
-          }
-        ]
-      },
-      {
         "year": 3,
         "chat": "t.me/joinchat/jTyZ03cqDRliOTY0",
         "teachings": {
@@ -106,6 +55,57 @@
             "ing-laboratorio-sicurezza-informatica-t",
             "ing-laboratorio-amm-sistemi-t",
             "isi-computational-statistics"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "informatica-per-il-management",
+    "name": "Informatica per il Management",
+    "icon": "💻",
+    "years": [
+      {
+        "year": 1,
+        "chat": "t.me/unibo_info_manag",
+        "teachings": {
+          "mandatory": [
+            "ipim-architettura-di-internet",
+            "ipim-diritto-di-internet",
+            "ipim-economia-aziendale",
+            "ipim-algebra-lineare",
+            "ipim-analisi-matematica",
+            "ipim-organizzazione-aziendale",
+            "ipim-programmazione-internet"
+          ]
+        }
+      },
+      {
+        "year": 2,
+        "chat": "t.me/unibo_info_manag",
+        "teachings": {
+          "mandatory": [
+            "ipim-finanza-aziendale",
+            "ipim-metodi-numerici-per-il-calcolo",
+            "ipim-microeconomia",
+            "ipim-sistemi-operativi",
+            "ipim-statistica-numerica",
+            "ipim-strategia-aziendale",
+            "ipim-algoritmi-e-strutture-dati"
+          ]
+        }
+      },
+      {
+        "year": 3,
+        "chat": "t.me/unibo_info_manag",
+        "teachings": {
+          "mandatory": [
+            "ipim-basi-di-dati",
+            "ipim-ingegneria-del-software",
+            "ipim-laboratorio-di-applicazioni-mobili",
+            "ipim-tecnologie-web",
+            "ipim-teoria-impresa",
+            "ipim-strategia-organizzazione-mercati"
           ]
         }
       }
