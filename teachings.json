@@ -589,6 +589,55 @@
     "chat": "t.me/unibo_info_manag",
     "website": "421469",
     "professors": ["edoardo.mollona"]
+  },
+  {
+    "name": "Algebra Lineare",
+    "url": "ipim-algebra-lineare",
+    "chat": "t.me/unibo_info_manag/5647",
+    "website": "367005",
+    "professors": ["francesco.regonati"]
+  },
+  {
+    "name": "Analisi Matematica",
+    "url": "ipim-analisi-matematica",
+    "chat": "t.me/unibo_info_manag/5646",
+    "website": "367006",
+    "professors": ["mattia.galeotti4"]
+  },
+  {
+    "name": "Sistemi Operativi",
+    "url": "ipim-sistemi-operativi",
+    "chat": "t.me/unibo_info_manag/6231",
+    "website": "320660",
+    "professors": ["davide.sangiorgi"]
+  },
+  {
+    "name": "Ingegneria del Software",
+    "url": "ipim-ingegneria-del-software",
+    "chat": "t.me/unibo_info_manag/9475",
+    "website": "367015",
+    "professors": ["daviderossi"]
+  },
+  {
+    "name": "Algoritmi e Strutture Dati",
+    "url": "ipim-algoritmi-e-strutture-dati",
+    "chat": "t.me/unibo_info_manag/6230",
+    "website": "320656",
+    "professors": ["lorenzo.donatiello","daviderossi","jocelyne.elias"]
+  },
+  {
+    "name": "Basi di Dati",
+    "url": "ipim-basi-di-dati",
+    "chat": "t.me/unibo_info_manag/9473",
+    "website": "378069",
+    "professors": ["marco.difelice3"]
+  },
+  {
+    "name": "Tecnologie Web",
+    "url": "ipim-tecnologie-web",
+    "chat": "t.me/unibo_info_manag/9477",
+    "website": "367014",
+    "professors": ["angelo.diiorio"]
   }
   
 ]
