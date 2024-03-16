@@ -90,7 +90,7 @@
             "ipim-microeconomia",
             "ipim-sistemi-operativi",
             "ipim-statistica-numerica",
-            "ipim-strategia-aziendale",
+            "strategia-aziendale",
             "ipim-algoritmi-e-strutture-dati"
           ]
         }
@@ -102,7 +102,7 @@
           "mandatory": [
             "ipim-basi-di-dati",
             "ipim-ingegneria-del-software",
-            "ipim-laboratorio-di-applicazioni-mobili",
+            "laboratorio-di-applicazioni-mobili",
             "ipim-tecnologie-web",
             "ipim-teoria-impresa",
             "ipim-strategia-organizzazione-mercati"
