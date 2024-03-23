@@ -638,6 +638,13 @@
     "chat": "t.me/unibo_info_manag/9477",
     "website": "367014",
     "professors": ["angelo.diiorio"]
+  },
+  {
+    "name": "Storia e Politiche del Digitale",
+    "url": "ipim-storia-politiche-digitale",
+    "chat": "t.me/unibo_info_manag",
+    "website": "498211",
+    "professors": ["mattia.frapporti2"]
   }
   
 ]
