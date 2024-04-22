@@ -175,7 +175,7 @@
         "year": 1,
         "teachings": {
           "mandatory": [
-            "ing-ricerca-operativa-m",
+            "ing-ricerca-operativa-m"
           ]
         }
       },
@@ -185,7 +185,7 @@
           "mandatory": [
           ]
         }
-      },
+      }
     ]
   },
   {
