@@ -166,6 +166,29 @@
     ]
   },
   {
+    "id": "ingegneria-informatica-magistrale",
+    "name": "Ingegneria Informatica Magistrale",
+    "icon": "👨‍🔧",
+    "chat": "t.me/joinchat/BMT7WBYtBSdduMJdhjs3Ew",
+    "years": [
+      {
+        "year": 1,
+        "teachings": {
+          "mandatory": [
+            "ing-ricerca-operativa-m"
+          ]
+        }
+      },
+      {
+        "year": 2,
+        "teachings": {
+          "mandatory": [
+          ]
+        }
+      }
+    ]
+  },
+  {
     "id": "informatica-magistrale",
     "name": "Informatica Magistrale",
     "icon": "🧑‍🏫",
