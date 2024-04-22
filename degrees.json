@@ -183,6 +183,9 @@
         "year": 2,
         "teachings": {
           "mandatory": [
+          ],
+          "electives": [
+            "ing-mobile-systems-m"
           ]
         }
       }
