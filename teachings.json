@@ -645,6 +645,13 @@
     "chat": "t.me/unibo_info_manag",
     "website": "498211",
     "professors": ["mattia.frapporti2"]
+  },
+  {
+    "name": "Ricerca Operativa M",
+    "url": "ing-ricerca-operativa-m",
+    "chat": "t.me/joinchat/BMT7WBYtBSdduMJdhjs3Ew",
+    "website": "467997",
+    "professors": ["silvano.martello"]
   }
   
 ]
