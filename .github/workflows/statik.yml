@@ -55,6 +55,7 @@ jobs:
           -l
           -b "https://risorse.students.cs.unibo.it/${{ github.event.repository.name }}/"
           -i "${{inputs.regex_include}}"
+          -e "README*"
           site
 
       - name: Generate site artifact
