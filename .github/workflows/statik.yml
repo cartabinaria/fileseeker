@@ -70,7 +70,7 @@ jobs:
         run: >
           grep 
           "https://risorse.students.cs.unibo.it/${{ github.event.repository.name}}/libri" 
-          -rl ./site | xargs 
+          -rl ./site | xargs -r
           sed -i 
           "s/https:\/\/risorse.students.cs.unibo.it\/${{ github.event.repository.name}}\/libri/https:\/\/csunibo.github.io\/${{ github.event.repository.name}}\/libri\//g"
 
