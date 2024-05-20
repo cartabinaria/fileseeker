@@ -155,11 +155,13 @@
             "ing-reti-di-calcolatori-t",
             "ing-elettronica-t",
             "ing-controlli-automatici-t",
-            "ing-tecnologie-web-t"
+            "ing-tecnologie-web-t",
+            "ing-ingegneria-software-t"
           ],
           "electives": [
             "ing-laboratorio-sicurezza-informatica-t",
-            "ing-laboratorio-amm-sistemi-t"
+            "ing-laboratorio-amm-sistemi-t",
+            "ing-diritto-t"
           ]
         }
       }

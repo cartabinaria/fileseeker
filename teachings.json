@@ -525,7 +525,7 @@
     "url": "ipim-diritto-di-internet",
     "chat": "t.me/unibo_info_manag/5645",
     "website": "320654",
-    "professors": ["matilde.ratti","giulio.errani2"]
+    "professors": ["matilde.ratti", "giulio.errani2"]
   },
   {
     "name": "Economia Aziendale",
@@ -546,7 +546,7 @@
     "url": "ipim-programmazione-internet",
     "chat": "t.me/unibo_info_manag/5648",
     "website": "402302",
-    "professors": ["angelo.diiorio","roberto.amadini"]
+    "professors": ["angelo.diiorio", "roberto.amadini"]
   },
   {
     "name": "Finanza Aziendale",
@@ -623,7 +623,7 @@
     "url": "ipim-algoritmi-e-strutture-dati",
     "chat": "t.me/unibo_info_manag/6230",
     "website": "320656",
-    "professors": ["lorenzo.donatiello","daviderossi","jocelyne.elias"]
+    "professors": ["lorenzo.donatiello", "daviderossi", "jocelyne.elias"]
   },
   {
     "name": "Basi di Dati",
@@ -659,5 +659,19 @@
     "chat": "t.me/joinchat/BMT7WBYtBSdduMJdhjs3Ew",
     "website": "468026",
     "professors": ["paolo.bellavista"]
+  },
+  {
+    "name": "Ingegneria del software T",
+    "url": "ing-ingegneria-software-t",
+    "chat": "t.me/joinchat/BMT7WBYtBSdduMJdhjs3Ew",
+    "website": "434708",
+    "professors": ["marco.patella"]
+  },
+  {
+    "name": "Diritto dell'Informatica T",
+    "url": "ing-diritto-t",
+    "chat": "t.me/joinchat/BMT7WBYtBSdduMJdhjs3Ew",
+    "website": "434715",
+    "professors": ["claudia.cevenini"]
   }
 ]
