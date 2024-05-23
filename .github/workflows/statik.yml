@@ -55,6 +55,9 @@ jobs:
       - name: Recursively compile xopp files
         run: rec "\.xopp$" /usr/bin/xopp2pdf
 
+      - name: Recursively compile typ files
+        run: rec "\.typ$" "typst compile"
+
       - name: Generate static directory listing
         run: >
           statik
