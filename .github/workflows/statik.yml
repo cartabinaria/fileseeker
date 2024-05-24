@@ -62,6 +62,7 @@ jobs:
         run: >
           statik
           -page /usr/share/page.gohtml
+          -style /usr/share/style.css
           -l
           -b "https://risorse.students.cs.unibo.it/${{ github.event.repository.name }}/"
           -i "${{inputs.regex_include}}"
