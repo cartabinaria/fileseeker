@@ -673,5 +673,12 @@
     "chat": "t.me/joinchat/BMT7WBYtBSdduMJdhjs3Ew",
     "website": "434715",
     "professors": ["claudia.cevenini"]
+  },
+  {
+    "name": "Emerging Programming Paradigms",
+    "url": "emerging-programming-paradigms",
+    "chat": "t.me/+YDegI0VHpC1lOTVk",
+    "website": "479059",
+    "professors": ["claudio.sacerdoticoen"]
   }
 ]
