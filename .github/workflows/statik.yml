@@ -44,19 +44,19 @@ jobs:
           chown -R $(id -u):$(id -g) $PWD
 
       - name: Recursively compile tex files
-        run: rec "\.tex$" "tectonic"
+        run: rec fconvert "\.tex$" "tectonic"
         
       - name: Recursively compile md files
-        run: rec "\.md$" /usr/bin/md2pdf
+        run: rec fconvert "\.md$" /usr/bin/md2pdf
 
       - name: Recursively compile (doc|ppt)x? files
-        run: rec "\.(f?od(t|s|p|g))|(odf)|((doc|ppt)x?)$" "libreoffice --headless --convert-to pdf --outdir ."
+        run: rec fconvert "\.(f?od(t|s|p|g))|(odf)|((doc|ppt)x?)$" "libreoffice --headless --convert-to pdf --outdir ."
 
       - name: Recursively compile xopp files
-        run: rec "\.xopp$" /usr/bin/xopp2pdf
+        run: rec fconvert "\.xopp$" /usr/bin/xopp2pdf
 
       - name: Recursively compile typ files
-        run: rec "\.typ$" "typst compile"
+        run: rec fconvert "\.typ$" "typst compile"
 
       - name: Generate static directory listing
         run: >
