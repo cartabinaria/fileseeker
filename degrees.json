@@ -430,87 +430,70 @@
     "teachings": [
       {
         "name": "usability-e-user-experience-design",
-        "year": 1,
-        "mandatory": true
+        "mandatory": false
       },
       {
         "name": "complementi-di-linguaggi-di-programmazione",
-        "year": 1,
-        "mandatory": true
+        "mandatory": false
       },
       {
         "name": "complementi-di-basi-di-dati",
-        "year": 1,
-        "mandatory": true
+        "mandatory": false
       },
       {
         "name": "intelligenza-artificiale",
-        "year": 1,
-        "mandatory": true
+        "mandatory": false
       },
       {
         "name": "digital-forensics",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "decision-making-with-constraint-programming",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "ingegneria-del-software-orientata-ai-servizi",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "simulazione-di-sistemi",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "modelli-e-sistemi-concorrenti",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "computer-graphics",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "matematica-computazionale",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "modelli-probabilistici",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "sistemi-context-aware",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "fisica-dei-sistemi-complessi",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "fondamenti-logici-informatica",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "didattica-informatica",
-        "year": 1,
         "mandatory": false
       },
       {
         "name": "emerging-programming-paradigms",
-        "year": 1,
         "mandatory": false
       }
     ]
