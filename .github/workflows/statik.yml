@@ -58,6 +58,9 @@ jobs:
       - name: Recursively compile typ files
         run: rec fconvert "\.typ$" "typst compile"
 
+      - name: Recursively compile ipynb files
+        run: rec fconvert "\.ipynb$" /usr/bin/jupyter2html
+
       - name: Generate static directory listing
         run: >
           statik
