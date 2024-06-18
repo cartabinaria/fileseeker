@@ -6,9 +6,9 @@ on:
         required: true
         type: string
 
-    # Used to specify which path of the statik generation should remain on 
-    # github pages. This is used to avoid hosting books on the main website 
-    # hosted under unibo.it
+      # Used to specify which path of the statik generation should remain on
+      # github pages. This is used to avoid hosting books on the main website
+      # hosted under unibo.it
       redirect_libri:
         required: false
         type: boolean
@@ -45,7 +45,7 @@ jobs:
 
       - name: Recursively compile tex files
         run: rec fconvert "\.tex$" "tectonic"
-        
+
       - name: Recursively compile md files
         run: rec fconvert "\.md$" /usr/bin/md2pdf
 
