@@ -14,10 +14,10 @@ import (
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"golang.org/x/net/webdav"
 
-	"github.com/csunibo/fileseeker/fs"
-	"github.com/csunibo/fileseeker/handlers"
-	"github.com/csunibo/fileseeker/listfs"
-	"github.com/csunibo/fileseeker/telemetry"
+	"github.com/cartabinaria/fileseeker/fs"
+	"github.com/cartabinaria/fileseeker/handlers"
+	"github.com/cartabinaria/fileseeker/listfs"
+	"github.com/cartabinaria/fileseeker/telemetry"
 )
 
 type configType []struct {
@@ -36,7 +36,7 @@ const (
 var (
 	RootCmd = &cobra.Command{
 		Use:   serviceName,
-		Short: "a webdav proxy for csunibo",
+		Short: "a webdav proxy for CartaBinaria",
 		Long: "a webdav server that serves files " +
 			"from a statik.json file tree, as produced by statik.",
 		Run: Execute,

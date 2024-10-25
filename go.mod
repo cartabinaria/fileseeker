@@ -1,4 +1,4 @@
-module github.com/csunibo/fileseeker
+module github.com/cartabinaria/fileseeker
 
 go 1.19
 

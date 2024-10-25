@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/rs/zerolog/log"
 
-	"github.com/csunibo/fileseeker/cmd"
+	"github.com/cartabinaria/fileseeker/cmd"
 )
 
 func main() {
