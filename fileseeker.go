@@ -62,7 +62,7 @@ func main() {
 
 	urlQueue := make([]string, 0)
 
-	const rootUrl = "https://csunibo.github.io"
+	const rootUrl = "https://cartabinaria.github.io"
 
 	// enqueue teachings
 	for _, teaching := range teachingData {
