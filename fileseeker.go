@@ -10,8 +10,11 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+    "strconv"
 
 	"github.com/charmbracelet/log"
+    "github.com/pelletier/go-toml/v2"
+    "golang.org/x/net/webdav"
 )
 
 type teachings []struct {
@@ -40,6 +43,13 @@ type statikFile struct {
 	Mime    string    `json:"mime"`
 	SizeRaw string    `json:"size"`
 	Time    time.Time `json:"time"`
+}
+
+type Config struct {
+    UpdateFrequency int `toml:"update_frequency"`
+    Port int `toml:"port"`
+    DataPath string `toml:"data_path"`
+    BaseUrl    string   `toml:"root_url"`
 }
 
 var (
@@ -208,4 +218,68 @@ func getStatik(url string) (statikNode, error) {
 	}
 
 	return statik, nil
+}
+
+func createWebDavServer() {
+    /* basic webdav server */
+	// const rootUrl = "https://cartabinaria.github.io"
+
+    config, err = loadConfig()
+
+    if err != nil {
+		return fmt.Errorf("error while parsing config file: %w", err)
+    }
+
+    /* webdav server setup */
+    srv := &webdav.Handler{
+		FileSystem: webdav.Dir(config.DataPath),
+		LockSystem: nil,
+		Prefix: config.BaseUrl,
+		Logger: func(r *http.Request, err error) {
+			if err != nil {
+				log.Printf("WEBDAV [%s]: %s, ERROR: %s\n", r.Method, r.URL, err)
+			} else {
+				log.Printf("WEBDAV [%s]: %s\n", r.Method, r.URL)
+			}
+		},
+	}
+
+    // middleware to allow only read-only requests
+    http.Handle("*", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        if (r.Method != "GET" && r.Method != "PROPFIND") {
+            w.WriteHeader(http.StatusMethodNotAllowed)
+            w.Write([]byte("405: Method Not Allowed"))
+            return
+        }
+        srv.ServeHTTP(w, r)
+    }))
+
+    /* start server */
+    err := http.ListenAndServe(":"+strconv.Itoa(config.Port), nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+}
+
+// load toml config file
+func loadConfig() (cfg Config, err error) {
+	file, err := os.Open("config.toml")
+	if err != nil {
+		return fmt.Errorf("failed to open config file: %w", err)
+	}
+
+    var config Config
+
+    err := toml.Unmarshal([]byte(doc), &config)
+
+    if err != nil {
+		return fmt.Errorf("error while parsing config file: %w", err)
+    }
+
+	err = file.Close()
+	if err != nil {
+		return fmt.Errorf("failed to close config file: %w", err)
+	}
+
+	return config, nil
 }
