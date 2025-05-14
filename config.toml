@@ -1,4 +1,4 @@
-update_frequency = 1000 #milliseconds
+update_frequency = 30 #minutes
 port = 8080
 base_url = "https://dev.dav.students.cs.unibo.it/"
 data_path = "./data"

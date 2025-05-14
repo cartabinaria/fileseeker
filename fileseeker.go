@@ -1,20 +1,23 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
+	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
+	"sync"
 	"time"
-    "strconv"
 
 	"github.com/charmbracelet/log"
-    "github.com/pelletier/go-toml/v2"
-    "golang.org/x/net/webdav"
+	"github.com/pelletier/go-toml/v2"
+	"golang.org/x/net/webdav"
 )
 
 type teachings []struct {
@@ -46,22 +49,142 @@ type statikFile struct {
 }
 
 type Config struct {
-    UpdateFrequency int `toml:"update_frequency"`
-    Port int `toml:"port"`
-    DataPath string `toml:"data_path"`
-    BaseUrl    string   `toml:"root_url"`
+	UpdateFrequency int    `toml:"update_frequency"`
+	Port            int    `toml:"port"`
+	DataPath        string `toml:"data_path"`
+	BaseUrl         string `toml:"root_url"`
 }
+
+type LockedFs struct {
+	fs webdav.FileSystem
+	mu *sync.RWMutex
+}
+
+func (lfs *LockedFs) OpenFile(ctx context.Context, name string, flag int, perm os.FileMode) (webdav.File, error) {
+	lfs.mu.RLock()
+
+	file, err := lfs.fs.OpenFile(ctx, name, flag, perm)
+	if err != nil {
+		lfs.mu.RUnlock()
+		return nil, err
+	}
+	return &LockedFile{file: file, mu: lfs.mu}, nil
+}
+
+func (lfs *LockedFs) Mkdir(ctx context.Context, name string, perm os.FileMode) error {
+	return errors.New("read-only filesystem: Mkdir is not allowed")
+}
+
+func (lfs *LockedFs) Rename(ctx context.Context, oldName, newName string) error {
+	return errors.New("read-only filesystem: Rename is not allowed")
+}
+
+func (lfs *LockedFs) RemoveAll(ctx context.Context, name string) error {
+	return errors.New("read-only filesystem: RemoveAll is not allowed")
+}
+
+func (lfs *LockedFs) Stat(ctx context.Context, name string) (os.FileInfo, error) {
+	return lfs.fs.Stat(ctx, name)
+}
+
+// needed to release RWMutex ()
+type LockedFile struct {
+	file webdav.File
+	mu   *sync.RWMutex
+}
+
+func (lf *LockedFile) Close() error {
+	err := lf.file.Close()
+	lf.mu.RUnlock()
+	return err
+}
+
+func (lf *LockedFile) Read(p []byte) (n int, err error) { return lf.file.Read(p) }
+
+func (lf *LockedFile) Write(p []byte) (n int, err error) {
+	return 0, errors.New("read-only filesystem: Write is not allowed")
+}
+
+func (lf *LockedFile) Seek(offset int64, whence int) (int64, error) {
+	return lf.file.Seek(offset, whence)
+}
+
+func (lf *LockedFile) Stat() (fs.FileInfo, error) { return lf.file.Stat() }
+
+func (lf *LockedFile) Readdir(count int) ([]fs.FileInfo, error) { return lf.file.Readdir(count) }
 
 var (
 	dataDir    = flag.String("d", "data", "data directory")
 	configFile = flag.String("c", "config/teachings.json", "config file")
 )
 
+/* middleware to allow only read-only requests */
+func readonlyMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case "GET", "PROPFIND", "HEAD", "OPTIONS":
+			next.ServeHTTP(w, r)
+		default:
+			http.Error(w, "405: Method not allowed", http.StatusMethodNotAllowed)
+		}
+	})
+}
+
 func main() {
 	flag.Parse()
 
 	log.Info("Starting fileseeker...")
 
+	var config, err = loadConfig()
+	if err != nil {
+		os.Exit(1)
+	}
+
+	var fsLock sync.RWMutex
+	/* file system */
+	lfs := &LockedFs{fs: webdav.Dir(config.DataPath), mu: &fsLock}
+
+	ticker := time.NewTicker(time.Duration(config.UpdateFrequency) * time.Minute)
+	done := make(chan bool)
+
+	/* run statikBFS every 30 minutes */
+	go func() {
+		for {
+			select {
+			case <-done:
+				return
+			case <-ticker.C:
+				fsLock.Lock()
+				statikBFS()
+				fsLock.Unlock()
+			}
+		}
+	}()
+
+	/* webdav server setup */
+	srv := &webdav.Handler{
+		FileSystem: lfs,
+		LockSystem: nil,
+		Prefix:     config.BaseUrl,
+		Logger: func(r *http.Request, err error) {
+			if err != nil {
+				log.Printf("WEBDAV [%s]: %s, ERROR: %s\n", r.Method, r.URL, err)
+			} else {
+				log.Printf("WEBDAV [%s]: %s\n", r.Method, r.URL)
+			}
+		},
+	}
+
+	http.Handle("/", readonlyMiddleware(srv))
+
+	/* start server */
+	err = http.ListenAndServe(":"+strconv.Itoa(config.Port), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func statikBFS() {
 	log.Debug("Loading teachings...")
 
 	teachingData, err := loadTeachings(*configFile)
@@ -82,7 +205,6 @@ func main() {
 	log.Debug("Enqueued teachings", "len", len(urlQueue))
 
 	// walk the tree
-
 	for len(urlQueue) > 0 {
 		statikUrl := urlQueue[0]
 		urlQueue = urlQueue[1:]
@@ -220,65 +342,19 @@ func getStatik(url string) (statikNode, error) {
 	return statik, nil
 }
 
-func createWebDavServer() {
-    /* basic webdav server */
-	// const rootUrl = "https://cartabinaria.github.io"
-
-    config, err = loadConfig()
-
-    if err != nil {
-		return fmt.Errorf("error while parsing config file: %w", err)
-    }
-
-    /* webdav server setup */
-    srv := &webdav.Handler{
-		FileSystem: webdav.Dir(config.DataPath),
-		LockSystem: nil,
-		Prefix: config.BaseUrl,
-		Logger: func(r *http.Request, err error) {
-			if err != nil {
-				log.Printf("WEBDAV [%s]: %s, ERROR: %s\n", r.Method, r.URL, err)
-			} else {
-				log.Printf("WEBDAV [%s]: %s\n", r.Method, r.URL)
-			}
-		},
-	}
-
-    // middleware to allow only read-only requests
-    http.Handle("*", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        if (r.Method != "GET" && r.Method != "PROPFIND") {
-            w.WriteHeader(http.StatusMethodNotAllowed)
-            w.Write([]byte("405: Method Not Allowed"))
-            return
-        }
-        srv.ServeHTTP(w, r)
-    }))
-
-    /* start server */
-    err := http.ListenAndServe(":"+strconv.Itoa(config.Port), nil)
-    if err != nil {
-        log.Fatal(err)
-    }
-}
-
-// load toml config file
+/* load toml config file */
 func loadConfig() (cfg Config, err error) {
-	file, err := os.Open("config.toml")
+	file, err := os.ReadFile("config.toml")
 	if err != nil {
-		return fmt.Errorf("failed to open config file: %w", err)
+		return Config{}, fmt.Errorf("failed to open config file: %w", err)
 	}
 
-    var config Config
+	var config Config
 
-    err := toml.Unmarshal([]byte(doc), &config)
+	err = toml.Unmarshal([]byte(file), &config)
 
-    if err != nil {
-		return fmt.Errorf("error while parsing config file: %w", err)
-    }
-
-	err = file.Close()
 	if err != nil {
-		return fmt.Errorf("failed to close config file: %w", err)
+		return Config{}, fmt.Errorf("error while parsing config file: %w", err)
 	}
 
 	return config, nil
