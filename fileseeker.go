@@ -145,9 +145,10 @@ func main() {
 	lfs := &LockedFs{fs: webdav.Dir(config.DataPath), mu: &fsLock}
 
 	ticker := time.NewTicker(time.Duration(config.UpdateFrequency) * time.Minute)
+
 	done := make(chan bool)
 
-	/* run statikBFS every 30 minutes */
+	/* run statikBFS */
 	go func() {
 		for {
 			select {
@@ -161,10 +162,12 @@ func main() {
 		}
 	}()
 
+	log.Info("Setting up webdav server...")
+
 	/* webdav server setup */
 	srv := &webdav.Handler{
 		FileSystem: lfs,
-		LockSystem: nil,
+		LockSystem: webdav.NewMemLS(),
 		Prefix:     config.BaseUrl,
 		Logger: func(r *http.Request, err error) {
 			if err != nil {
@@ -182,6 +185,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 }
 
 func statikBFS() {
