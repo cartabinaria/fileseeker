@@ -62,7 +62,6 @@ type LockedFs struct {
 }
 
 func (lfs *LockedFs) OpenFile(ctx context.Context, name string, flag int, perm os.FileMode) (webdav.File, error) {
-	// lfs.mu.RLock()
 	_, ok := mutexMap[name]
 	if !ok {
 		var lock sync.RWMutex
@@ -156,21 +155,13 @@ func main() {
 	/* file system */
 	lfs := &LockedFs{fs: webdav.Dir(config.DataPath)}
 
-	ticker := time.NewTicker(time.Duration(config.UpdateFrequency) * time.Minute)
-
-	done := make(chan bool)
-
 	/* run statikBFS */
 	go func() {
-		for {
-			select {
-			case <-done:
-				return
-			case <-ticker.C:
-				// fsLock.Lock()
-				statikBFS()
-				// fsLock.Unlock()
-			}
+		statikBFS()
+		ticker := time.NewTicker(time.Duration(config.UpdateFrequency) * time.Minute)
+		defer ticker.Stop()
+		for range ticker.C {
+			statikBFS()
 		}
 	}()
 
