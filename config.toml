@@ -1,6 +1,6 @@
 update_frequency = 30 #minutes
 port = 8080
-base_url = "https://dev.dav.students.cs.unibo.it/"
-carta_binaria_url = "https://cartabinaria.github.io"
+base_url = "https://dev.dav.students.cs.unibo.it"
+carta_binaria_url = "https://cartabinaria.github.io/"
 data_path = "./data"
 teachings_path = "config/teachings.json"

@@ -74,6 +74,7 @@ func (lfs *LockedFs) OpenFile(ctx context.Context, name string, flag int, perm o
 		mutexMap[name].RUnlock()
 		return nil, err
 	}
+
 	return &LockedFile{file: file, name: name}, nil
 }
 
@@ -152,9 +153,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	/* file system */
-	lfs := &LockedFs{fs: webdav.Dir(config.DataPath)}
-
 	/* run statikBFS */
 	go func() {
 		statikBFS()
@@ -165,13 +163,16 @@ func main() {
 		}
 	}()
 
+	/* file system */
+	lfs := &LockedFs{fs: webdav.Dir(config.DataPath)}
+
 	log.Info("Setting up webdav server...")
 
 	/* webdav server setup */
 	srv := &webdav.Handler{
 		FileSystem: lfs,
 		LockSystem: webdav.NewMemLS(),
-		Prefix:     config.BaseUrl,
+		Prefix:     "/",
 		Logger: func(r *http.Request, err error) {
 			if err != nil {
 				log.Printf("WEBDAV [%s]: %s, ERROR: %s", r.Method, r.URL, err)
