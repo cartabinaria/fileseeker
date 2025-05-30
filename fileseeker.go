@@ -15,6 +15,7 @@ import (
 	"sync"
 	"time"
 
+	cparser "github.com/cartabinaria/config-parser-go"
 	"github.com/charmbracelet/log"
 	"github.com/pelletier/go-toml/v2"
 	"golang.org/x/net/webdav"
@@ -148,16 +149,14 @@ func main() {
 
 	log.Info("Starting fileseeker...")
 
-    /* load config */
+	/* load config */
 	config, err := loadConfig()
 	if err != nil {
 		os.Exit(1)
 	}
 
-    log.Debug("Loading teachings...")
-
-    /* load teachings */
-	teachingData, err := loadTeachings(config.TeachingsPath)
+	log.Debug("Loading teachings...")
+	teachingData, err := cparser.ParseTeachings()
 	if err != nil {
 		log.Errorf("Failed to load teachings: %v", err)
 		os.Exit(1)
@@ -207,7 +206,7 @@ func main() {
 
 }
 
-func statikBFS(config Config, teachingData teachings) {
+func statikBFS(config Config, teachingData []cparser.Teaching) {
 
 	urlQueue := make([]string, 0)
 
@@ -335,19 +334,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 	mutexMap[localPath].Unlock()
 
 	return nil
-}
-
-func loadTeachings(teachingsFile string) (teachings, error) {
-	f, err := os.Open(teachingsFile)
-	if err != nil {
-		return nil, fmt.Errorf("failed to open file %s: %w", teachingsFile, err)
-	}
-
-	var config teachings
-	if err := json.NewDecoder(f).Decode(&config); err != nil {
-		return nil, fmt.Errorf("failed to decode file %s: %w", teachingsFile, err)
-	}
-	return config, nil
 }
 
 func getStatik(url string) (statikNode, error) {
