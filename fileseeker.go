@@ -148,18 +148,31 @@ func main() {
 
 	log.Info("Starting fileseeker...")
 
-	var config, err = loadConfig()
+    /* load config */
+	config, err := loadConfig()
 	if err != nil {
+		os.Exit(1)
+	}
+
+    log.Debug("Loading teachings...")
+
+    /* load teachings */
+	teachingData, err := loadTeachings(config.TeachingsPath)
+	if err != nil {
+		log.Errorf("Failed to load teachings: %v", err)
 		os.Exit(1)
 	}
 
 	/* run statikBFS */
 	go func() {
-		statikBFS()
+
+		statikBFS(config, teachingData)
+
 		ticker := time.NewTicker(time.Duration(config.UpdateFrequency) * time.Minute)
 		defer ticker.Stop()
+
 		for range ticker.C {
-			statikBFS()
+			statikBFS(config, teachingData)
 		}
 	}()
 
@@ -194,19 +207,7 @@ func main() {
 
 }
 
-func statikBFS() {
-	log.Debug("Loading teachings...")
-
-	var config, err = loadConfig()
-	if err != nil {
-		os.Exit(1)
-	}
-
-	teachingData, err := loadTeachings(config.TeachingsPath)
-	if err != nil {
-		log.Errorf("Failed to load teachings: %v", err)
-		os.Exit(1)
-	}
+func statikBFS(config Config, teachingData teachings) {
 
 	urlQueue := make([]string, 0)
 
