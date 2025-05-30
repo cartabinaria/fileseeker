@@ -152,6 +152,7 @@ func main() {
 	/* load config */
 	config, err := loadConfig()
 	if err != nil {
+		log.Error("Failed to load config", "error", err)
 		os.Exit(1)
 	}
 
