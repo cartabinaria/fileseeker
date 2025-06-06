@@ -38,6 +38,12 @@ func loadConfig() (*Config, error) {
 		return nil, fmt.Errorf("failed to open config file %s: %w", *configPath, err)
 	}
 
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Errorf("Failed to close config file: %v", err)
+		}
+	}()
+
 	var cfg Config
 	err = toml.NewDecoder(file).Decode(&cfg)
 	if err != nil {
@@ -86,20 +92,22 @@ type lockedFs struct {
 }
 
 func (lfs *lockedFs) OpenFile(ctx context.Context, name string, flag int, perm os.FileMode) (webdav.File, error) {
-	_, ok := mutexMap[name]
-	if !ok {
-		var lock sync.RWMutex
-		mutexMap[name] = &lock
-	}
-	mutexMap[name].RLock()
+	lock := mutexMap.Get(name)
+	lock.RLock()
 
 	file, err := lfs.fs.OpenFile(ctx, name, flag, perm)
 	if err != nil {
-		mutexMap[name].RUnlock()
+		lock.RUnlock()
 		return nil, err
 	}
 
 	return &lockedFile{file: file, name: name}, nil
+}
+
+func (lf *lockedFile) Close() error {
+	err := lf.file.Close()
+	mutexMap.Get(lf.name).RUnlock() // release the read lock opened in OpenFile
+	return err
 }
 
 func (lfs *lockedFs) Mkdir(ctx context.Context, name string, perm os.FileMode) error {
@@ -122,17 +130,6 @@ func (lfs *lockedFs) Stat(ctx context.Context, name string) (os.FileInfo, error)
 type lockedFile struct {
 	file webdav.File
 	name string
-}
-
-func (lf *lockedFile) Close() error {
-	_, ok := mutexMap[lf.name]
-	if !ok {
-		var lock sync.RWMutex
-		mutexMap[lf.name] = &lock
-	}
-	err := lf.file.Close()
-	mutexMap[lf.name].RUnlock()
-	return err
 }
 
 func (lf *lockedFile) Read(p []byte) (n int, err error) { return lf.file.Read(p) }
@@ -161,10 +158,43 @@ func readonlyMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+type cacheMap struct {
+	lockMap    map[string]*sync.RWMutex
+	globalLock sync.RWMutex
+}
+
+func NewCacheMap() *cacheMap {
+	return &cacheMap{map[string]*sync.RWMutex{}, sync.RWMutex{}}
+}
+
+func (cm *cacheMap) Get(key string) *sync.RWMutex {
+	cm.globalLock.RLock()
+	lock, ok := cm.lockMap[key]
+	cm.globalLock.RUnlock()
+
+	if ok {
+		// if the lock already exists, we can return it
+		return lock
+	}
+
+	// we need a write lock to safely add a new lock
+	// we need to check again after acquiring the write lock
+	// because another goroutine might have added it while we
+	// were waiting for the write lock
+	cm.globalLock.Lock()
+	if lock, ok = cm.lockMap[key]; !ok {
+		lock = &sync.RWMutex{}
+		cm.lockMap[key] = lock
+	}
+	cm.globalLock.Unlock() // release write lock
+
+	return lock
+}
+
 var (
 	configPath = flag.String("c", "config.toml", "config path")
 	verbose    = flag.Bool("v", false, "verbose logging")
-	mutexMap   = make(map[string]*sync.RWMutex)
+	mutexMap   = NewCacheMap()
 )
 
 func main() {
@@ -325,13 +355,10 @@ func statikBFS(config *Config, teachingData []cparser.Teaching) {
 var upToDate = errors.New("up to date")
 
 func downloadStatikFile(localPath string, url string, lastModified time.Time) error {
-	_, ok := mutexMap[localPath]
+	lock := mutexMap.Get(localPath)
 
-	if !ok {
-		var lock sync.RWMutex
-		mutexMap[localPath] = &lock
-	}
-	mutexMap[localPath].Lock()
+	lock.Lock()
+	defer lock.Unlock() // each return releases the lock
 
 	// if file already exists, check if remote file is newer. if not, return
 	stat, err := os.Stat(localPath)
@@ -339,7 +366,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 		localModTime := stat.ModTime()
 
 		if lastModified.Before(localModTime) {
-			mutexMap[localPath].Unlock()
 			return upToDate
 		}
 	}
@@ -348,7 +374,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 	dir := filepath.Dir(localPath)
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-			mutexMap[localPath].Unlock()
 			return fmt.Errorf("failed to create directory %s: %w", dir, err)
 		}
 	}
@@ -356,7 +381,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 	// download file
 	resp, err := http.Get(url)
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to fetch %s: %w", url, err)
 	}
 
@@ -364,53 +388,48 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 
 	fp, err := os.Create(localPath)
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to create file %s: %w", localPath, err)
 	}
 
 	_, err = fp.ReadFrom(rBody)
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to write file %s: %w", localPath, err)
 	}
 
 	err = fp.Close()
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to close file %s: %w", localPath, err)
 	}
 
 	err = rBody.Close()
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to close response body: %w", err)
 	}
-
-	mutexMap[localPath].Unlock()
 
 	return nil
 }
 
-func getStatik(url string) (statikNode, error) {
+func getStatik(url string) (*statikNode, error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		return statikNode{}, fmt.Errorf("failed to fetch statik.json %s: %w", url, err)
+		return nil, fmt.Errorf("failed to fetch statik.json %s: %w", url, err)
 	}
 
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
+			log.Errorf("Failed to close response body: %v", err)
+		}
+	}()
+
 	if resp.StatusCode != http.StatusOK {
-		return statikNode{}, fmt.Errorf("failed to fetch statik.json %s: %s", url, resp.Status)
+		return nil, fmt.Errorf("failed to fetch statik.json %s: %s", url, resp.Status)
 	}
 
 	var statik statikNode
 	err = json.NewDecoder(resp.Body).Decode(&statik)
 	if err != nil {
-		return statikNode{}, fmt.Errorf("failed to decode statik.json: %w", err)
+		return nil, fmt.Errorf("failed to decode statik.json: %w", err)
 	}
 
-	err = resp.Body.Close()
-	if err != nil {
-		return statikNode{}, fmt.Errorf("failed to close response body: %w", err)
-	}
-
-	return statik, nil
+	return &statik, nil
 }
