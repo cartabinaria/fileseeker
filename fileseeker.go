@@ -9,8 +9,8 @@ import (
 	"io/fs"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -21,114 +21,130 @@ import (
 	"golang.org/x/net/webdav"
 )
 
-type teachings []struct {
-	Url string `json:"url"`
-}
-
-type statikNode struct {
-	statikDirectory
-	Directories []statikDirectory `json:"directories"`
-	Files       []statikFile      `json:"files"`
-}
-
-type statikDirectory struct {
-	Url         string    `json:"url"`
-	Time        time.Time `json:"time"`
-	GeneratedAt time.Time `json:"generated_at"`
-	Name        string    `json:"name"`
-	Path        string    `json:"path"`
-	SizeRaw     string    `json:"size"`
-}
-
-type statikFile struct {
-	Name    string    `json:"name"`
-	Path    string    `json:"path"`
-	Url     string    `json:"url"`
-	Mime    string    `json:"mime"`
-	SizeRaw string    `json:"size"`
-	Time    time.Time `json:"time"`
-}
-
 type Config struct {
-	UpdateFrequency int    `toml:"update_frequency"`
-	Port            int    `toml:"port"`
-	DataPath        string `toml:"data_path"`
-	BaseUrl         string `toml:"base_url"`
-	CartaBinariaUrl string `toml:"carta_binaria_url"`
-	TeachingsPath   string `toml:"teachings_path"`
+	UpdateFrequency    time.Duration
+	UpdateFrequencyStr string `toml:"update_frequency"`
+	Port               int    `toml:"port"`
+	DataPath           string `toml:"data_path"`
+	BaseUrl            string `toml:"base_url"`
+	CartaBinariaUrl    string `toml:"carta_binaria_url"`
+	TeachingsPath      string `toml:"teachings_path"`
 }
 
-type LockedFs struct {
+/* load toml config file */
+func loadConfig() (*Config, error) {
+	file, err := os.Open(*configPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to open config file %s: %w", *configPath, err)
+	}
+
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Errorf("Failed to close config file: %v", err)
+		}
+	}()
+
+	var cfg Config
+	err = toml.NewDecoder(file).Decode(&cfg)
+	if err != nil {
+		return nil, fmt.Errorf("error while parsing config file: %w", err)
+	}
+
+	// Parse period
+	cfg.UpdateFrequency, err = time.ParseDuration(cfg.UpdateFrequencyStr)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse update_frequency: %w", err)
+	} else if cfg.UpdateFrequency <= 0 {
+		return nil, errors.New("update_frequency must be greater than 0")
+	}
+
+	return &cfg, nil
+}
+
+type (
+	statikNode struct {
+		statikDirectory
+		Directories []statikDirectory `json:"directories"`
+		Files       []statikFile      `json:"files"`
+	}
+
+	statikDirectory struct {
+		Url         string    `json:"url"`
+		Time        time.Time `json:"time"`
+		GeneratedAt time.Time `json:"generated_at"`
+		Name        string    `json:"name"`
+		Path        string    `json:"path"`
+		SizeRaw     string    `json:"size"`
+	}
+
+	statikFile struct {
+		Name    string    `json:"name"`
+		Path    string    `json:"path"`
+		Url     string    `json:"url"`
+		Mime    string    `json:"mime"`
+		SizeRaw string    `json:"size"`
+		Time    time.Time `json:"time"`
+	}
+)
+
+type lockedFs struct {
 	fs webdav.FileSystem
 }
 
-func (lfs *LockedFs) OpenFile(ctx context.Context, name string, flag int, perm os.FileMode) (webdav.File, error) {
-	_, ok := mutexMap[name]
-	if !ok {
-		var lock sync.RWMutex
-		mutexMap[name] = &lock
-	}
-	mutexMap[name].RLock()
+func (lfs *lockedFs) OpenFile(ctx context.Context, name string, flag int, perm os.FileMode) (webdav.File, error) {
+	lock := mutexMap.Get(name)
+	lock.RLock()
 
 	file, err := lfs.fs.OpenFile(ctx, name, flag, perm)
 	if err != nil {
-		mutexMap[name].RUnlock()
+		lock.RUnlock()
 		return nil, err
 	}
 
-	return &LockedFile{file: file, name: name}, nil
+	return &lockedFile{file: file, name: name}, nil
 }
 
-func (lfs *LockedFs) Mkdir(ctx context.Context, name string, perm os.FileMode) error {
+func (lf *lockedFile) Close() error {
+	err := lf.file.Close()
+	mutexMap.Get(lf.name).RUnlock() // release the read lock opened in OpenFile
+	return err
+}
+
+func (lfs *lockedFs) Mkdir(ctx context.Context, name string, perm os.FileMode) error {
 	return errors.New("read-only filesystem: Mkdir is not allowed")
 }
 
-func (lfs *LockedFs) Rename(ctx context.Context, oldName, newName string) error {
+func (lfs *lockedFs) Rename(ctx context.Context, oldName, newName string) error {
 	return errors.New("read-only filesystem: Rename is not allowed")
 }
 
-func (lfs *LockedFs) RemoveAll(ctx context.Context, name string) error {
+func (lfs *lockedFs) RemoveAll(ctx context.Context, name string) error {
 	return errors.New("read-only filesystem: RemoveAll is not allowed")
 }
 
-func (lfs *LockedFs) Stat(ctx context.Context, name string) (os.FileInfo, error) {
+func (lfs *lockedFs) Stat(ctx context.Context, name string) (os.FileInfo, error) {
 	return lfs.fs.Stat(ctx, name)
 }
 
 // needed to release RWMutex ()
-type LockedFile struct {
+type lockedFile struct {
 	file webdav.File
 	name string
 }
 
-func (lf *LockedFile) Close() error {
-	_, ok := mutexMap[lf.name]
-	if !ok {
-		var lock sync.RWMutex
-		mutexMap[lf.name] = &lock
-	}
-	err := lf.file.Close()
-	mutexMap[lf.name].RUnlock()
-	return err
-}
+func (lf *lockedFile) Read(p []byte) (n int, err error) { return lf.file.Read(p) }
 
-func (lf *LockedFile) Read(p []byte) (n int, err error) { return lf.file.Read(p) }
-
-func (lf *LockedFile) Write(p []byte) (n int, err error) {
+func (lf *lockedFile) Write(p []byte) (n int, err error) {
 	return 0, errors.New("read-only filesystem: Write is not allowed")
 }
 
-func (lf *LockedFile) Seek(offset int64, whence int) (int64, error) {
+func (lf *lockedFile) Seek(offset int64, whence int) (int64, error) {
 	return lf.file.Seek(offset, whence)
 }
 
-func (lf *LockedFile) Stat() (fs.FileInfo, error) { return lf.file.Stat() }
+func (lf *lockedFile) Stat() (fs.FileInfo, error) { return lf.file.Stat() }
 
-func (lf *LockedFile) Readdir(count int) ([]fs.FileInfo, error) { return lf.file.Readdir(count) }
-
-var (
-	configPath = flag.String("c", "config.toml", "config path")
-)
+func (lf *lockedFile) Readdir(count int) ([]fs.FileInfo, error) { return lf.file.Readdir(count) }
 
 /* middleware to allow only read-only requests */
 func readonlyMiddleware(next http.Handler) http.Handler {
@@ -142,17 +158,60 @@ func readonlyMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-var mutexMap = make(map[string]*sync.RWMutex)
+type cacheMap struct {
+	lockMap    map[string]*sync.RWMutex
+	globalLock sync.RWMutex
+}
+
+func NewCacheMap() *cacheMap {
+	return &cacheMap{map[string]*sync.RWMutex{}, sync.RWMutex{}}
+}
+
+func (cm *cacheMap) Get(key string) *sync.RWMutex {
+	cm.globalLock.RLock()
+	lock, ok := cm.lockMap[key]
+	cm.globalLock.RUnlock()
+
+	if ok {
+		// if the lock already exists, we can return it
+		return lock
+	}
+
+	// we need a write lock to safely add a new lock
+	// we need to check again after acquiring the write lock
+	// because another goroutine might have added it while we
+	// were waiting for the write lock
+	cm.globalLock.Lock()
+	if lock, ok = cm.lockMap[key]; !ok {
+		lock = &sync.RWMutex{}
+		cm.lockMap[key] = lock
+	}
+	cm.globalLock.Unlock() // release write lock
+
+	return lock
+}
+
+var (
+	configPath = flag.String("c", "config.toml", "config path")
+	verbose    = flag.Bool("v", false, "verbose logging")
+	mutexMap   = NewCacheMap()
+)
 
 func main() {
 	flag.Parse()
 
+	if *verbose {
+		log.SetLevel(log.DebugLevel)
+	}
+
 	log.Info("Starting fileseeker...")
+
+	globalCtx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, os.Kill)
 
 	/* load config */
 	config, err := loadConfig()
 	if err != nil {
-		log.Error("Failed to load config", "error", err)
+		log.Errorf("Failed to load config: %v", err)
 		os.Exit(1)
 	}
 
@@ -166,23 +225,32 @@ func main() {
 	/* run statikBFS */
 	go func() {
 
-		statikBFS(config, teachingData)
-
-		ticker := time.NewTicker(time.Duration(config.UpdateFrequency) * time.Minute)
+		ticker := time.NewTicker(config.UpdateFrequency)
 		defer ticker.Stop()
 
-		for range ticker.C {
-			statikBFS(config, teachingData)
+		log.Info("Starting periodic updates...", "frequency", config.UpdateFrequency)
+
+		// first run
+		statikBFS(config, teachingData)
+
+		for {
+			select {
+			case <-globalCtx.Done():
+				log.Info("Shutting down periodic updates...")
+				return
+			case <-ticker.C:
+				statikBFS(config, teachingData)
+			}
 		}
 	}()
 
 	/* file system */
-	lfs := &LockedFs{fs: webdav.Dir(config.DataPath)}
+	lfs := &lockedFs{fs: webdav.Dir(config.DataPath)}
 
 	log.Info("Setting up webdav server...")
 
 	/* webdav server setup */
-	srv := &webdav.Handler{
+	webdavHandler := &webdav.Handler{
 		FileSystem: lfs,
 		LockSystem: webdav.NewMemLS(),
 		Prefix:     "/",
@@ -195,19 +263,33 @@ func main() {
 		},
 	}
 
-	http.Handle("/", readonlyMiddleware(srv))
+	mux := http.NewServeMux()
+	mux.Handle("/", readonlyMiddleware(webdavHandler))
 
-	log.Info("Server running.", "port", config.Port)
+	log.Info("Starting server", "port", config.Port)
 
-	/* start server */
-	err = http.ListenAndServe(":"+strconv.Itoa(config.Port), nil)
-	if err != nil {
-		log.Fatal(err)
+	srv := &http.Server{Addr: fmt.Sprintf(":%d", config.Port), Handler: mux}
+	go func() {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Errorf("Failed to start server: %v", err)
+			cancel() // cancel the context to stop the server
+		}
+	}()
+
+	// wait for shutdown signal, then clean up
+	<-globalCtx.Done()
+
+	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 5*time.Second)
+
+	log.Info("Shutting down server...")
+	if err := srv.Shutdown(shutdownCtx); err != nil {
+		log.Errorf("Error shutting down server: %v", err)
 	}
-
+	shutdownCancel()
+	log.Info("Server shutdown complete")
 }
 
-func statikBFS(config Config, teachingData []cparser.Teaching) {
+func statikBFS(config *Config, teachingData []cparser.Teaching) {
 
 	urlQueue := make([]string, 0)
 
@@ -222,6 +304,8 @@ func statikBFS(config Config, teachingData []cparser.Teaching) {
 
 	// walk the tree
 	for len(urlQueue) > 0 {
+
+		// breath-first search (FIFO)
 		statikUrl := urlQueue[0]
 		urlQueue = urlQueue[1:]
 
@@ -247,7 +331,7 @@ func statikBFS(config Config, teachingData []cparser.Teaching) {
 			path := strings.TrimPrefix(url, rootUrl)
 			path = filepath.Join(config.DataPath, path)
 
-			pathLogger := log.With("path", path)
+			pathLogger := log.With("queued_urls", len(urlQueue), "path", path)
 
 			pathLogger.Debug("Downloading", "url", url)
 
@@ -258,11 +342,11 @@ func statikBFS(config Config, teachingData []cparser.Teaching) {
 			err := downloadStatikFile(path, url, f.Time)
 
 			if err == upToDate {
-				pathLogger.Info("Up to date")
+				pathLogger.Debug("Up to date")
 			} else if err != nil {
-				pathLogger.Info("Failed", "err", err)
+				pathLogger.Debug("Failed", "err", err)
 			} else {
-				pathLogger.Info("Downloaded")
+				pathLogger.Debug("Downloaded")
 			}
 		}
 	}
@@ -271,13 +355,10 @@ func statikBFS(config Config, teachingData []cparser.Teaching) {
 var upToDate = errors.New("up to date")
 
 func downloadStatikFile(localPath string, url string, lastModified time.Time) error {
-	_, ok := mutexMap[localPath]
+	lock := mutexMap.Get(localPath)
 
-	if !ok {
-		var lock sync.RWMutex
-		mutexMap[localPath] = &lock
-	}
-	mutexMap[localPath].Lock()
+	lock.Lock()
+	defer lock.Unlock() // each return releases the lock
 
 	// if file already exists, check if remote file is newer. if not, return
 	stat, err := os.Stat(localPath)
@@ -285,7 +366,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 		localModTime := stat.ModTime()
 
 		if lastModified.Before(localModTime) {
-			mutexMap[localPath].Unlock()
 			return upToDate
 		}
 	}
@@ -294,7 +374,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 	dir := filepath.Dir(localPath)
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-			mutexMap[localPath].Unlock()
 			return fmt.Errorf("failed to create directory %s: %w", dir, err)
 		}
 	}
@@ -302,7 +381,6 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 	// download file
 	resp, err := http.Get(url)
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to fetch %s: %w", url, err)
 	}
 
@@ -310,71 +388,48 @@ func downloadStatikFile(localPath string, url string, lastModified time.Time) er
 
 	fp, err := os.Create(localPath)
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to create file %s: %w", localPath, err)
 	}
 
 	_, err = fp.ReadFrom(rBody)
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to write file %s: %w", localPath, err)
 	}
 
 	err = fp.Close()
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to close file %s: %w", localPath, err)
 	}
 
 	err = rBody.Close()
 	if err != nil {
-		mutexMap[localPath].Unlock()
 		return fmt.Errorf("failed to close response body: %w", err)
 	}
-
-	mutexMap[localPath].Unlock()
 
 	return nil
 }
 
-func getStatik(url string) (statikNode, error) {
+func getStatik(url string) (*statikNode, error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		return statikNode{}, fmt.Errorf("failed to fetch statik.json %s: %w", url, err)
+		return nil, fmt.Errorf("failed to fetch statik.json %s: %w", url, err)
 	}
 
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
+			log.Errorf("Failed to close response body: %v", err)
+		}
+	}()
+
 	if resp.StatusCode != http.StatusOK {
-		return statikNode{}, fmt.Errorf("failed to fetch statik.json %s: %s", url, resp.Status)
+		return nil, fmt.Errorf("failed to fetch statik.json %s: %s", url, resp.Status)
 	}
 
 	var statik statikNode
 	err = json.NewDecoder(resp.Body).Decode(&statik)
 	if err != nil {
-		return statikNode{}, fmt.Errorf("failed to decode statik.json: %w", err)
+		return nil, fmt.Errorf("failed to decode statik.json: %w", err)
 	}
 
-	err = resp.Body.Close()
-	if err != nil {
-		return statikNode{}, fmt.Errorf("failed to close response body: %w", err)
-	}
-
-	return statik, nil
-}
-
-/* load toml config file */
-func loadConfig() (cfg Config, err error) {
-	file, err := os.ReadFile(*configPath)
-	if err != nil {
-		return Config{}, fmt.Errorf("failed to open config file: %w", err)
-	}
-
-	var config Config
-
-	err = toml.Unmarshal([]byte(file), &config)
-
-	if err != nil {
-		return Config{}, fmt.Errorf("error while parsing config file: %w", err)
-	}
-
-	return config, nil
+	return &statik, nil
 }
